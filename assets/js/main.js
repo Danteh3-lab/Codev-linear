@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typedTarget && typeof TypedCtor === 'function') {
         new TypedCtor('#prompts-sample', {
             strings: [
-                'Need a high-quality business website?',
-                'Need a custom web app for your users?',
-                'Planning a mobile app for your customers?',
-                'Need an internal business tool for your team?'
+                'Need a business website that feels solid?',
+                'Need a web app built around how your users actually work?',
+                'Thinking about a mobile app for your customers?',
+                'Need an internal tool that saves your team time?'
             ],
             typeSpeed: 40,
             backSpeed: 20,
