@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -30,13 +30,13 @@
                     <a href="#features" class="hover:text-white transition-colors duration-200">Services</a>
                     <a href="#method" class="hover:text-white transition-colors duration-200">Process</a>
                     <a href="#customers" class="hover:text-white transition-colors duration-200">Clients</a>
-                    <a href="#changelog" class="hover:text-white transition-colors duration-200">Launch</a>
-                    <a href="#pricing" class="hover:text-white transition-colors duration-200">Start</a>
+                    <a href="#results" class="hover:text-white transition-colors duration-200">Results</a>
+                    <a href="#results" class="hover:text-white transition-colors duration-200">Start</a>
                 </div>
             </div>
             <div class="flex items-center gap-4 text-xs font-medium">
                 <a href="#method" class="hidden sm:block hover:text-white transition-colors">See our process.</a>
-                <a href="#pricing"
+                <a href="#results"
                     class="bg-white/10 hover:bg-white/15 text-white px-3 py-1.5 rounded-full border border-white/10 transition-all duration-200 shadow-[0_0_10px_rgba(255,255,255,0.05)]">
                     Start your project.
                 </a>
@@ -52,7 +52,7 @@
         <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
 
             <!-- Announcement Badge -->
-            <a href="#changelog"
+            <a href="#results"
                 class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors mb-8 group">
                 <span class="text-xs text-[#8a8f98] group-hover:text-white transition-colors">Development partner for
                     people and businesses</span>
@@ -1032,273 +1032,87 @@
             </div>
         </div>
     </section>
-
-    <!-- Launch Section -->
-    <section id="changelog" class="py-32">
-        <div class="max-w-7xl mx-auto px-6">
-            <!-- Header -->
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
-                <h2
-                    class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.05] max-w-2xl">
-                    Launch reliably <br> and iterate fast
-                </h2>
-                <div class="max-w-md pt-2">
-                    <p class="text-lg text-zinc-400 font-light leading-relaxed mb-8">
-                        We handle QA, release communication, and post-launch support so launch day feels
-                        calmer and the product keeps getting better afterward.
-                    </p>
-                    <a href="#changelog"
-                        class="inline-flex items-center text-sm text-zinc-500 hover:text-white transition-colors font-mono">
-                        4.0 Launch (Coming soon) <span class="ml-2">-&gt;</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Launch Interface -->
-            <div
-                class="relative w-full max-w-5xl mx-auto bg-[#08090a] rounded-xl h-[600px] overflow-hidden flex flex-col mask-build-blend">
-
-                <!-- File Path -->
-                <div class="h-10 border-b border-white/[0.05] flex items-center px-4 gap-3 bg-white/[0.01]">
-                    <iconify-icon icon="solar:file-code-bold-duotone" class="text-zinc-500 text-lg"></iconify-icon>
-                    <span
-                        class="text-[11px] font-mono text-zinc-500 tracking-tight">acme-web/src/modules/billing/usage-export.ts</span>
-                </div>
-
-                <!-- Diff Content -->
-                <div class="flex-1 overflow-hidden grid grid-cols-2 font-mono text-xs">
-                    <!-- Left Side (Old) -->
-                    <div class="border-r border-white/5 overflow-hidden">
-                        <div class="p-4 space-y-[2px]">
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">01</span>
-                                <span class="text-blue-400">import</span> <span>React</span> <span
-                                    class="text-blue-400">from</span> <span class="text-orange-300">'react'</span>
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">02</span>
-                                <span class="text-blue-400">import</span> <span>{ View, ActivityIndicator }</span> <span
-                                    class="text-blue-400">from</span> <span
-                                    class="text-orange-300">'react-native'</span>
-                            </div>
-                            <div class="flex gap-4 bg-red-500/10 -mx-4 px-4">
-                                <span class="w-6 text-right select-none text-red-500/50">03</span>
-                                <span class="text-blue-400">import</span> <span>{ <span
-                                        class="bg-red-500/20 px-0.5 rounded">useVehicleState</span> }</span> <span
-                                    class="text-blue-400">from</span> <span
-                                    class="text-orange-300">'@hooks/useVehicleState'</span>
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">04</span>
-                                <span class="text-blue-400">import</span> <span>{ Dashboard }</span> <span
-                                    class="text-blue-400">from</span> <span
-                                    class="text-orange-300">'@components/Dashboard'</span>
-                            </div>
-                            <div class="h-4"></div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">06</span>
-                                <span class="text-purple-400">export const</span> <span
-                                    class="text-yellow-200">HomeScreen</span> = () =&gt; {
-                            </div>
-                            <div class="flex gap-4 bg-red-500/10 -mx-4 px-4">
-                                <span class="w-6 text-right select-none text-red-500/50">07</span>
-                                <span class="text-purple-400">const</span> { vehicleState, <span
-                                    class="bg-red-500/20 px-0.5 rounded">isFullySynced</span> } = <span
-                                    class="text-yellow-200">useVehicleState</span>()
-                            </div>
-                            <div class="h-4"></div>
-                            <div class="flex gap-4 bg-red-500/10 -mx-4 px-4">
-                                <span class="w-6 text-right select-none text-red-500/50">09</span>
-                                <span class="text-pink-400">if</span> (!isFullySynced) {
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">10</span>
-                                <span class="text-pink-400">return</span> &lt;<span
-                                    class="text-blue-300">ActivityIndicator</span> <span
-                                    class="text-blue-200">size</span>=<span class="text-orange-300">"large"</span> /&gt;
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">11</span>
-                                }
-                            </div>
-                            <div class="h-4"></div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">13</span>
-                                <span class="text-pink-400">return</span> (
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">14</span>
-                                &lt;<span class="text-blue-300">View</span>&gt;
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">15</span>
-                                <span class="ml-4">&lt;<span class="text-blue-300">Dashboard</span> <span
-                                        class="text-blue-200">state</span>={<span
-                                        class="text-zinc-300">vehicleState</span>} /&gt;</span>
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">16</span>
-                                &lt;/<span class="text-blue-300">View</span>&gt;
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">17</span>
-                                )
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">18</span>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Side (New) -->
-                    <div class="overflow-hidden">
-                        <div class="p-4 space-y-[2px]">
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">01</span>
-                                <span class="text-blue-400">import</span> <span>React</span> <span
-                                    class="text-blue-400">from</span> <span class="text-orange-300">'react'</span>
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">02</span>
-                                <span class="text-blue-400">import</span> <span>{ View, ActivityIndicator }</span> <span
-                                    class="text-blue-400">from</span> <span
-                                    class="text-orange-300">'react-native'</span>
-                            </div>
-                            <div class="flex gap-4 bg-emerald-500/10 -mx-4 px-4">
-                                <span class="w-6 text-right select-none text-emerald-500/50">03</span>
-                                <span class="text-blue-400">import</span> <span>{ <span
-                                        class="bg-emerald-500/20 px-0.5 rounded text-emerald-300">useVehicleState,
-                                        SyncStatus</span> }</span> <span class="text-blue-400">from</span> <span
-                                    class="text-orange-300">'@hooks/useVehicleState'</span>
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">04</span>
-                                <span class="text-blue-400">import</span> <span>{ Dashboard }</span> <span
-                                    class="text-blue-400">from</span> <span
-                                    class="text-orange-300">'@components/Dashboard'</span>
-                            </div>
-                            <div class="h-4"></div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">06</span>
-                                <span class="text-purple-400">export const</span> <span
-                                    class="text-yellow-200">HomeScreen</span> = () =&gt; {
-                            </div>
-                            <div class="flex gap-4 bg-emerald-500/10 -mx-4 px-4">
-                                <span class="w-6 text-right select-none text-emerald-500/50">07</span>
-                                <span class="text-purple-400">const</span> { vehicleState, <span
-                                    class="bg-emerald-500/20 px-0.5 rounded text-emerald-300">syncStatus</span> } =
-                                <span class="text-yellow-200">useVehicleState</span>()
-                            </div>
-                            <div class="h-4"></div>
-                            <div class="flex gap-4 bg-emerald-500/10 -mx-4 px-4">
-                                <span class="w-6 text-right select-none text-emerald-500/50">09</span>
-                                <span class="text-pink-400">if</span> (syncStatus === <span
-                                    class="text-zinc-300">SyncStatus.PENDING</span>) {
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">10</span>
-                                <span class="text-pink-400">return</span> &lt;<span
-                                    class="text-blue-300">ActivityIndicator</span> <span
-                                    class="text-blue-200">size</span>=<span class="text-orange-300">"large"</span> /&gt;
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">11</span>
-                                }
-                            </div>
-                            <div class="h-4"></div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">13</span>
-                                <span class="text-pink-400">return</span> (
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">14</span>
-                                &lt;<span class="text-blue-300">View</span>&gt;
-                            </div>
-                            <div class="flex gap-4 bg-emerald-500/10 -mx-4 px-4">
-                                <span class="w-6 text-right select-none text-emerald-500/50">15</span>
-                                <span class="ml-4">&lt;<span class="text-blue-300">Dashboard</span> <span
-                                        class="text-blue-200">state</span>={<span
-                                        class="text-zinc-300">vehicleState</span>} <span
-                                        class="bg-emerald-500/20 px-0.5 rounded text-emerald-300">syncStatus={syncStatus}</span>
-                                    /&gt;</span>
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">16</span>
-                                &lt;/<span class="text-blue-300">View</span>&gt;
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">17</span>
-                                )
-                            </div>
-                            <div class="flex gap-4 opacity-40">
-                                <span class="w-6 text-right select-none text-zinc-600">18</span>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature Links Section -->
-            <div class="mt-16 max-w-5xl mx-auto pt-8">
-                <div class="grid grid-cols-2 gap-x-20 gap-y-3 text-xs font-mono">
-                    <div class="flex flex-col gap-3">
-                        <a href="#changelog"
-                            class="flex items-center justify-between text-zinc-500 hover:text-white transition-colors group">
-                            <span>4.1 QA Pass</span>
-                            <iconify-icon icon="solar:arrow-right-linear"
-                                class="opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0"></iconify-icon>
-                        </a>
-                        <a href="#changelog"
-                            class="flex items-center justify-between text-zinc-500 hover:text-white transition-colors group">
-                            <span>4.3 Monitoring Setup</span>
-                            <iconify-icon icon="solar:arrow-right-linear"
-                                class="opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0"></iconify-icon>
-                        </a>
-                    </div>
-                    <div class="flex flex-col gap-3">
-                        <a href="#changelog"
-                            class="flex items-center justify-between text-zinc-500 hover:text-white transition-colors group">
-                            <span>4.2 Release Notes</span>
-                            <iconify-icon icon="solar:arrow-right-linear"
-                                class="opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0"></iconify-icon>
-                        </a>
-                        <a href="#changelog"
-                            class="flex items-center justify-between text-zinc-500 hover:text-white transition-colors group">
-                            <span>4.4 Iteration Backlog</span>
-                            <iconify-icon icon="solar:arrow-right-linear"
-                                class="opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0"></iconify-icon>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Pre-Footer / CTA -->
-    <section id="pricing" class="py-24 relative overflow-hidden border-t border-white/[0.04]">
+    <!-- Results Section -->
+    <section id="results" class="relative py-24 md:py-28 border-y border-white/[0.04] overflow-hidden">
         <div
-            class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[300px] bg-gradient-to-b from-[#5E6AD2]/10 to-transparent blur-[80px] pointer-events-none">
+            class="absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(94,106,210,0.12),transparent_38%)] pointer-events-none">
         </div>
-        <div class="max-w-2xl mx-auto text-center px-6 relative z-10">
-            <h2 class="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">Start your next <br> website or app.
-            </h2>
-            <p class="text-zinc-400 text-lg font-light mb-10">
-                Share your timeline, constraints, and goals. We will come back with a practical build plan
-                and a clear picture of the support that comes with it.
-            </p>
-            <div class="flex items-center justify-center">
-                <button
-                    class="h-10 px-6 rounded-full bg-white text-black hover:bg-zinc-200 font-medium text-sm transition-all duration-200 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                    Start your project.
-                </button>
+
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="relative max-w-5xl mx-auto">
+                <h2 class="text-5xl md:text-6xl font-medium tracking-tight text-white">Client Results</h2>
+
+                <div class="mt-14">
+                    <div class="relative">
+                        <div class="absolute left-0 right-0 top-2 h-px bg-white/[0.08]"></div>
+                        <div class="relative grid grid-cols-4 gap-4 md:gap-8">
+                            <div class="flex items-center">
+                                <span class="h-4 w-4 rounded-full border border-[#ff4d5f]/40 bg-[#ff4d5f]/20 flex items-center justify-center">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-[#ff4d5f] shadow-[0_0_10px_rgba(255,77,95,0.8)]"></span>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-center md:justify-start">
+                                <span class="h-4 w-4 rounded-full border border-white/15 bg-[#14161a] flex items-center justify-center">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-white/20"></span>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-center md:justify-start">
+                                <span class="h-4 w-4 rounded-full border border-white/15 bg-[#14161a] flex items-center justify-center">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-white/20"></span>
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-end md:justify-start">
+                                <span class="h-4 w-4 rounded-full border border-white/15 bg-[#14161a] flex items-center justify-center">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-white/20"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+                        <article class="space-y-3">
+                            <h3 class="text-white text-[21px] sm:text-base font-medium leading-tight">Local service website launch</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed">
+                                Discovery, design, build, and launch completed with conversion-focused pages and a clear contact flow.
+                            </p>
+                            <p class="text-[11px] tracking-[0.16em] uppercase text-zinc-600 font-mono">Website Build</p>
+                        </article>
+
+                        <article class="space-y-3">
+                            <h3 class="text-white text-[21px] sm:text-base font-medium leading-tight">Internal operations dashboard</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed">
+                                Replaced manual spreadsheet work with a custom internal tool tailored to daily team workflows.
+                            </p>
+                            <p class="text-[11px] tracking-[0.16em] uppercase text-zinc-600 font-mono">Internal Tool</p>
+                        </article>
+
+                        <article class="space-y-3">
+                            <h3 class="text-white text-[21px] sm:text-base font-medium leading-tight">Customer portal MVP</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed">
+                                Built a focused web app MVP with priority features, clean architecture, and room to scale.
+                            </p>
+                            <p class="text-[11px] tracking-[0.16em] uppercase text-zinc-600 font-mono">Web App</p>
+                        </article>
+
+                        <article class="space-y-3">
+                            <h3 class="text-white text-[21px] sm:text-base font-medium leading-tight">Post-launch support sprint</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed">
+                                After release, we handled fixes, improvements, and small feature requests as part of ongoing support.
+                            </p>
+                            <p class="text-[11px] tracking-[0.16em] uppercase text-zinc-600 font-mono">Ongoing Support</p>
+                        </article>
+                    </div>
+                </div>
+
+                <a href="#customers"
+                    class="inline-flex items-center gap-2 mt-16 text-lg text-zinc-400 hover:text-white transition-colors">
+                    See client highlights
+                    <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+                </a>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="border-t border-white/[0.08] bg-[#08090a] pt-16 pb-12">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-6 gap-8 mb-16">
@@ -1314,8 +1128,8 @@
                         <li><a href="#features" class="hover:text-zinc-300 transition-colors">Website Development</a></li>
                         <li><a href="#" data-coming-soon="true" aria-disabled="true" title="Coming soon"
                                 class="hover:text-zinc-300 transition-colors">Web Platforms</a></li>
-                        <li><a href="#pricing" class="hover:text-zinc-300 transition-colors">Engagement</a></li>
-                        <li><a href="#changelog" class="hover:text-zinc-300 transition-colors">Launch Support</a></li>
+                        <li><a href="#results" class="hover:text-zinc-300 transition-colors">Engagement</a></li>
+                        <li><a href="#results" class="hover:text-zinc-300 transition-colors">Launch Support</a></li>
                         <li><a href="#" data-coming-soon="true" aria-disabled="true" title="Coming soon"
                                 class="hover:text-zinc-300 transition-colors">Maintenance</a></li>
                     </ul>
@@ -1338,7 +1152,7 @@
                     <ul class="space-y-3 text-xs text-zinc-500">
                         <li><a href="#" data-coming-soon="true" aria-disabled="true" title="Coming soon"
                                 class="hover:text-zinc-300 transition-colors">Playbooks</a></li>
-                        <li><a href="#pricing" class="hover:text-zinc-300 transition-colors">Start your project.</a></li>
+                        <li><a href="#results" class="hover:text-zinc-300 transition-colors">Start your project.</a></li>
                         <li><a href="#" data-coming-soon="true" aria-disabled="true" title="Coming soon"
                                 class="hover:text-zinc-300 transition-colors">Case Notes</a></li>
                         <li><a href="#" data-coming-soon="true" aria-disabled="true" title="Coming soon"
@@ -1383,3 +1197,4 @@
 </body>
 
 </html>
+
