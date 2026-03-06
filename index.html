@@ -485,8 +485,8 @@
     <section id="features" class="py-24 border-b border-white/[0.04]">
         <div class="max-w-7xl mx-auto px-6">
             <!-- Main Headline -->
-            <div class="max-w-4xl mb-24">
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#8a8f98] leading-[1.15]">
+            <div class="feature-intro max-w-[980px] mb-24 md:mb-28">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#8a8f98] leading-[1.06]">
                     <span class="text-white">A development partner for people and businesses.</span>
                     Codev gives you senior engineering, a clear scope, and a straightforward path
                     from idea to launch.
@@ -494,17 +494,16 @@
             </div>
 
             <!-- Concept Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 border-t border-white/[0.06] pt-12">
+            <div class="feature-panels grid grid-cols-1 md:grid-cols-3 border-t border-white/[0.06] pt-12 md:pt-14">
                 <!-- Item 1 -->
-                <div class="group flex flex-col h-full">
-                    <div class="text-[10px] font-mono text-zinc-600 mb-12 uppercase tracking-widest">FIG 0.2</div>
+                <article class="feature-panel group">
+                    <div class="feature-figure-id">FIG 0.2</div>
 
                     <!-- Isometric Wireframe: Layers -->
-                    <div
-                        class="flex-grow flex items-center justify-center mb-12 relative h-48 group-hover:opacity-100 opacity-80 transition-opacity duration-500">
+                    <div class="feature-figure-stage flex-grow">
                         <svg width="200" height="150" viewBox="0 0 200 150" fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            class="stroke-zinc-700/80 group-hover:stroke-zinc-600 transition-colors duration-500"
+                            class="feature-figure-svg stroke-zinc-700/80 group-hover:stroke-zinc-500 transition-colors duration-500"
                             stroke-width="0.75">
                             <!-- Bottom Layer -->
                             <path d="M100 120L40 90L100 60L160 90L100 120Z" />
@@ -524,24 +523,23 @@
                         </svg>
                     </div>
 
-                    <div class="mt-auto">
-                        <h3 class="text-base font-medium text-white mb-2">Start with a real plan</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">
+                    <div class="feature-copy mt-auto">
+                        <h3 class="text-base font-medium text-white mb-3">Start with a real plan</h3>
+                        <p class="text-[15px] text-zinc-500 leading-[1.6] font-light max-w-[320px]">
                             We lock in the scope, technical approach, and milestones before the build begins.
                         </p>
                     </div>
-                </div>
+                </article>
 
                 <!-- Item 2 -->
-                <div class="group flex flex-col h-full">
-                    <div class="text-[10px] font-mono text-zinc-600 mb-12 uppercase tracking-widest">FIG 0.3</div>
+                <article class="feature-panel group">
+                    <div class="feature-figure-id">FIG 0.3</div>
 
                     <!-- Isometric Wireframe: Cubes -->
-                    <div
-                        class="flex-grow flex items-center justify-center mb-12 relative h-48 group-hover:opacity-100 opacity-80 transition-opacity duration-500">
+                    <div class="feature-figure-stage flex-grow">
                         <svg width="200" height="150" viewBox="0 0 200 150" fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            class="stroke-zinc-700/80 group-hover:stroke-zinc-600 transition-colors duration-500"
+                            class="feature-figure-svg stroke-zinc-700/80 group-hover:stroke-zinc-500 transition-colors duration-500"
                             stroke-width="0.75">
                             <!-- Cube 1 (Left) -->
                             <g
@@ -572,24 +570,23 @@
                         </svg>
                     </div>
 
-                    <div class="mt-auto">
-                        <h3 class="text-base font-medium text-white mb-2">Built by experienced engineers</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">
+                    <div class="feature-copy mt-auto">
+                        <h3 class="text-base font-medium text-white mb-3">Built by experienced engineers</h3>
+                        <p class="text-[15px] text-zinc-500 leading-[1.6] font-light max-w-[320px]">
                             We build websites, custom apps, and internal tools that are meant to hold up in production.
                         </p>
                     </div>
-                </div>
+                </article>
 
                 <!-- Item 3 -->
-                <div class="group flex flex-col h-full">
-                    <div class="text-[10px] font-mono text-zinc-600 mb-12 uppercase tracking-widest">FIG 0.4</div>
+                <article class="feature-panel group">
+                    <div class="feature-figure-id">FIG 0.4</div>
 
                     <!-- Isometric Wireframe: Shelves/Cards -->
-                    <div
-                        class="flex-grow flex items-center justify-center mb-12 relative h-48 group-hover:opacity-100 opacity-80 transition-opacity duration-500">
+                    <div class="feature-figure-stage flex-grow">
                         <svg width="200" height="150" viewBox="0 0 200 150" fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            class="stroke-zinc-700/80 group-hover:stroke-zinc-600 transition-colors duration-500"
+                            class="feature-figure-svg stroke-zinc-700/80 group-hover:stroke-zinc-500 transition-colors duration-500"
                             stroke-width="0.75">
                             <!-- Card 1 (Back) -->
                             <path d="M120 40L160 55V105L120 90V40Z" class="opacity-30" />
@@ -622,13 +619,13 @@
                         </svg>
                     </div>
 
-                    <div class="mt-auto">
-                        <h3 class="text-base font-medium text-white mb-2">You see what is happening</h3>
-                        <p class="text-sm text-zinc-500 leading-relaxed font-light">
+                    <div class="feature-copy mt-auto">
+                        <h3 class="text-base font-medium text-white mb-3">You see what is happening</h3>
+                        <p class="text-[15px] text-zinc-500 leading-[1.6] font-light max-w-[320px]">
                             Expect weekly updates, honest tradeoffs, and a clear owner from kickoff through launch.
                         </p>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>

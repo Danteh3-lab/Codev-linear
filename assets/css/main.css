@@ -216,6 +216,79 @@
     mask-composite: intersect;
 }
 
+.feature-intro {
+    position: relative;
+    z-index: 1;
+}
+
+.feature-panels {
+    gap: 3.5rem;
+}
+
+.feature-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 32rem;
+}
+
+.feature-figure-id {
+    margin-bottom: 1.75rem;
+    color: #5a5f69;
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.feature-figure-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 18rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.82;
+    transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.feature-panel:hover .feature-figure-stage {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.feature-figure-svg {
+    overflow: visible;
+    filter: drop-shadow(0 0 28px rgba(0, 0, 0, 0.35));
+}
+
+.feature-copy {
+    padding-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+    .feature-panels {
+        gap: 0;
+    }
+
+    .feature-panel {
+        min-height: 34rem;
+        padding: 0 1.75rem 0 0;
+    }
+
+    .feature-panel:not(:last-child) {
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .feature-panel:not(:first-child) {
+        padding-left: 1.75rem;
+    }
+
+    .feature-figure-stage {
+        min-height: 19rem;
+        margin-bottom: 2.75rem;
+    }
+}
+
 /* Dropdown Styles */
 .dropdown {
     position: relative;
