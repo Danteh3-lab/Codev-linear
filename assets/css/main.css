@@ -812,6 +812,466 @@
     }
 }
 
+.monitor-showcase {
+    position: relative;
+    isolation: isolate;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 22px;
+    background:
+        linear-gradient(180deg, rgba(11, 13, 17, 0.92), rgba(8, 10, 13, 0.98)),
+        #08090a;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        inset 0 0 0 1px rgba(122, 136, 255, 0.04),
+        0 40px 120px rgba(0, 0, 0, 0.58);
+}
+
+.monitor-showcase::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background:
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 12.5% 100%, 100% 84px;
+    opacity: 0.33;
+}
+
+.monitor-showcase::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background:
+        radial-gradient(64% 42% at 44% 8%, rgba(123, 139, 255, 0.22), rgba(8, 9, 10, 0) 74%),
+        linear-gradient(180deg, rgba(8, 9, 10, 0) 67%, rgba(8, 9, 10, 0.88) 100%),
+        linear-gradient(90deg, rgba(8, 9, 10, 0) 72%, rgba(8, 9, 10, 0.86) 100%);
+}
+
+.monitor-showcase-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(40% 32% at 8% 54%, rgba(74, 98, 214, 0.09), rgba(8, 9, 10, 0) 80%),
+        radial-gradient(46% 28% at 80% 50%, rgba(62, 86, 198, 0.08), rgba(8, 9, 10, 0) 82%);
+}
+
+.monitor-pane {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+}
+
+.monitor-pane--left {
+    left: 0;
+    width: 50%;
+    border-right: 1px solid rgba(255, 255, 255, 0.035);
+}
+
+.monitor-pane--right {
+    left: 50%;
+    width: 50%;
+    padding: 1.9rem 1.95rem;
+}
+
+.monitor-bars-wrap {
+    position: absolute;
+    right: 2.05rem;
+    top: 4.45rem;
+    bottom: 4.9rem;
+    width: 39%;
+    min-width: 180px;
+}
+
+.monitor-axis-y {
+    position: absolute;
+    right: -2rem;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #677182;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+.monitor-bars-grid {
+    position: absolute;
+    inset: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background:
+        repeating-linear-gradient(to top, transparent 0 47px, rgba(255, 255, 255, 0.045) 47px 48px);
+}
+
+.monitor-bars {
+    position: absolute;
+    inset: 0.4rem 0.75rem 0.35rem 0.8rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.15rem;
+    align-items: end;
+}
+
+.monitor-bar-group {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 5px;
+    height: 100%;
+}
+
+.monitor-bar {
+    width: 10px;
+    border-radius: 4px 4px 0 0;
+    height: var(--h);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.24);
+}
+
+.monitor-bar--cyan {
+    background: linear-gradient(180deg, rgba(96, 210, 255, 0.94), rgba(96, 210, 255, 0.24));
+}
+
+.monitor-bar--teal {
+    background: linear-gradient(180deg, rgba(44, 231, 214, 0.94), rgba(44, 231, 214, 0.24));
+}
+
+.monitor-bar--blue {
+    background: linear-gradient(180deg, rgba(88, 164, 255, 0.9), rgba(88, 164, 255, 0.2));
+}
+
+.monitor-bars-date {
+    position: absolute;
+    left: 0.8rem;
+    bottom: -1.9rem;
+    color: #697385;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+.monitor-cycle-chart {
+    position: relative;
+    height: 380px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+    overflow: hidden;
+    background:
+        radial-gradient(38% 26% at 0% 50%, rgba(86, 108, 234, 0.08), rgba(8, 10, 12, 0) 80%),
+        linear-gradient(180deg, rgba(12, 14, 19, 0.54), rgba(8, 10, 12, 0.72));
+}
+
+.monitor-cycle-grid {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 33.33% 100%, 100% 64px;
+    opacity: 0.34;
+}
+
+.monitor-cycle-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.monitor-line {
+    fill: none;
+    stroke-width: 1.6;
+}
+
+.monitor-line--blue {
+    stroke: rgba(84, 111, 255, 0.54);
+}
+
+.monitor-line--orange {
+    stroke: rgba(255, 130, 49, 0.48);
+}
+
+.monitor-cluster {
+    position: absolute;
+    inset: 0;
+}
+
+.monitor-cluster span {
+    position: absolute;
+    left: calc(var(--x) * 1%);
+    top: calc(var(--y) * 1%);
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+}
+
+.monitor-cluster--blue span {
+    background: rgba(85, 109, 255, 0.94);
+}
+
+.monitor-cluster--orange span {
+    background: rgba(255, 122, 36, 0.95);
+}
+
+.monitor-cluster--gray span {
+    background: rgba(120, 126, 140, 0.72);
+}
+
+.monitor-cycle-labels {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.85rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: #6e7684;
+    font-size: 12px;
+    text-align: center;
+}
+
+.monitor-pulse-card {
+    position: absolute;
+    top: 2.45rem;
+    left: 2.55rem;
+    width: 380px;
+    z-index: 5;
+}
+
+.monitor-pulse-card::before {
+    content: "";
+    position: absolute;
+    inset: -22px -18px -24px -20px;
+    border-radius: 24px;
+    background:
+        radial-gradient(70% 80% at 12% 50%, rgba(115, 127, 255, 0.18), rgba(11, 12, 14, 0) 72%),
+        radial-gradient(42% 65% at 100% 55%, rgba(82, 99, 212, 0.09), rgba(11, 12, 14, 0) 78%);
+    opacity: 0.72;
+    filter: blur(18px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.monitor-pulse-inner {
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+        radial-gradient(35% 90% at 0% 50%, rgba(129, 140, 248, 0.13), rgba(10, 10, 10, 0) 70%),
+        linear-gradient(180deg, rgba(35, 38, 44, 0.9), rgba(21, 23, 28, 0.95));
+    padding: 1.45rem;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 30px 64px rgba(0, 0, 0, 0.58);
+    backdrop-filter: blur(4px);
+}
+
+.monitor-pulse-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.35rem;
+}
+
+.monitor-pulse-head h4 {
+    color: #f4f4f5;
+    font-size: 1.02rem;
+    font-weight: 500;
+}
+
+.monitor-pulse-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.3rem 0.55rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #f3f4f6;
+    font-size: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.monitor-pulse-label {
+    margin-bottom: 1.15rem;
+    color: #6f7581;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.monitor-pulse-project {
+    margin-bottom: 1.55rem;
+}
+
+.monitor-pulse-project:last-child {
+    margin-bottom: 0;
+}
+
+.monitor-pulse-project h5 {
+    margin: 0 0 0.42rem;
+    color: #f4f4f5;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.monitor-pulse-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.68rem;
+    font-size: 12px;
+}
+
+.monitor-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 4px;
+    padding: 0.08rem 0.38rem;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.monitor-tag--risk {
+    background: rgba(255, 77, 95, 0.12);
+    color: #ff5a6c;
+}
+
+.monitor-tag--ok {
+    background: rgba(0, 201, 133, 0.12);
+    color: #00d390;
+}
+
+.monitor-pulse-project ul {
+    margin: 0;
+    padding-left: 1.05rem;
+    color: #c8cbd1;
+    font-size: 0.93rem;
+    line-height: 1.52;
+}
+
+.monitor-pulse-project li+li {
+    margin-top: 0.36rem;
+}
+
+.monitor-pulse-project li::marker {
+    color: #646b77;
+}
+
+.monitor-footer-links {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.25rem;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 1.35rem;
+    color: #778090;
+    font-size: 0.95rem;
+}
+
+.monitor-footer-col {
+    display: flex;
+    gap: 1.15rem;
+}
+
+.monitor-footer-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1100px) {
+    .monitor-showcase {
+        min-height: 900px;
+    }
+
+    .monitor-pane {
+        position: relative;
+        width: 100%;
+        left: auto;
+        top: auto;
+        bottom: auto;
+    }
+
+    .monitor-pane--left {
+        height: 350px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .monitor-pane--right {
+        padding-top: 1.35rem;
+        height: 360px;
+    }
+
+    .monitor-bars-wrap {
+        right: 4.5rem;
+        left: auto;
+        width: 52%;
+        min-width: 220px;
+    }
+
+    .monitor-pulse-card {
+        top: 2.4rem;
+        left: 1.5rem;
+        width: min(380px, calc(100% - 3rem));
+    }
+}
+
+@media (max-width: 767px) {
+    .monitor-showcase {
+        min-height: 1020px;
+    }
+
+    .monitor-pane--left {
+        height: 270px;
+    }
+
+    .monitor-bars-wrap {
+        left: 1rem;
+        right: 3.2rem;
+        width: auto;
+        min-width: 0;
+    }
+
+    .monitor-pulse-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: calc(100% - 2rem);
+        margin: -128px auto 1rem;
+    }
+
+    .monitor-pane--right {
+        padding: 1rem;
+        height: 340px;
+    }
+
+    .monitor-cycle-chart {
+        height: 300px;
+    }
+
+    .monitor-footer-links {
+        position: static;
+        padding: 0 1rem 1.1rem;
+        justify-content: space-between;
+        gap: 0.75rem;
+        font-size: 0.84rem;
+        flex-wrap: wrap;
+    }
+
+    .monitor-footer-col {
+        gap: 0.7rem;
+    }
+}
+
 /* Dropdown Styles */
 .dropdown {
     position: relative;
