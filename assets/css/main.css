@@ -487,6 +487,331 @@
     }
 }
 
+.build-roadmap {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    background:
+        linear-gradient(180deg, rgba(9, 10, 12, 0.84), rgba(8, 9, 10, 0.96)),
+        #08090a;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        0 30px 90px rgba(0, 0, 0, 0.3);
+}
+
+.build-roadmap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 13.6% 100%, 100% 110px;
+    opacity: 0.18;
+    pointer-events: none;
+}
+
+.build-roadmap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(110% 95% at 100% 72%, rgba(8, 9, 10, 0), rgba(8, 9, 10, 0.62) 72%, rgba(8, 9, 10, 0.9) 100%),
+        linear-gradient(180deg, rgba(8, 9, 10, 0.7) 0%, rgba(8, 9, 10, 0.1) 18%, rgba(8, 9, 10, 0.62) 100%);
+    pointer-events: none;
+}
+
+.build-roadmap-months {
+    position: absolute;
+    left: 34%;
+    right: 2rem;
+    top: 1.35rem;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.25rem;
+    z-index: 3;
+    color: #5f6670;
+    font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+}
+
+.build-roadmap-panel {
+    position: absolute;
+    left: 1rem;
+    top: 6.8rem;
+    width: 320px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(20, 22, 26, 0.86), rgba(10, 11, 13, 0.92));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 20px 70px rgba(0, 0, 0, 0.32);
+    z-index: 4;
+}
+
+.build-roadmap-panel h3 {
+    margin: 0;
+    padding: 1.1rem 1.15rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    color: #f3f4f6;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.build-roadmap-list {
+    margin: 0;
+    padding: 0.7rem 1.15rem 0.85rem;
+    list-style: none;
+}
+
+.build-roadmap-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #d4d4d8;
+    font-size: 0.95rem;
+    padding: 0.54rem 0;
+}
+
+.build-roadmap-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.build-roadmap-count {
+    color: #717782;
+    font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    font-size: 12px;
+}
+
+.build-roadmap-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.build-roadmap-dot--cyan {
+    background: #2dd4bf;
+}
+
+.build-roadmap-dot--teal {
+    background: #14b8a6;
+}
+
+.build-roadmap-dot--violet {
+    background: #818cf8;
+}
+
+.build-roadmap-dot--amber {
+    background: #f59e0b;
+}
+
+.build-roadmap-dot--rose {
+    background: #fb7185;
+}
+
+.build-roadmap-subgroup {
+    margin: 0 1.15rem 1.1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding-top: 0.9rem;
+}
+
+.build-roadmap-subhead {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.55rem;
+    color: #f4f4f5;
+    font-size: 0.95rem;
+    margin-bottom: 0.65rem;
+}
+
+.build-roadmap-subgroup ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.build-roadmap-subgroup li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #a4a7af;
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
+}
+
+.build-roadmap-timeline {
+    position: relative;
+    margin-left: 35%;
+    margin-right: 2rem;
+    padding-top: 5.2rem;
+    padding-bottom: 2.6rem;
+    z-index: 3;
+}
+
+.build-track {
+    margin-bottom: 1.45rem;
+}
+
+.build-track-title {
+    color: #dfe3ea;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.build-track-line {
+    position: relative;
+    height: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    background: rgba(11, 12, 15, 0.66);
+}
+
+.build-track-bar {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    border-radius: 6px;
+    border: 1px solid;
+}
+
+.build-track-bar--cyan {
+    border-color: rgba(56, 189, 248, 0.38);
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.18), rgba(56, 189, 248, 0.04));
+}
+
+.build-track-bar--teal {
+    border-color: rgba(20, 184, 166, 0.4);
+    background: linear-gradient(90deg, rgba(20, 184, 166, 0.2), rgba(20, 184, 166, 0.04));
+}
+
+.build-track-bar--violet {
+    border-color: rgba(129, 140, 248, 0.38);
+    background: linear-gradient(90deg, rgba(129, 140, 248, 0.18), rgba(129, 140, 248, 0.04));
+}
+
+.build-track-bar--a {
+    left: 6%;
+    width: 42%;
+}
+
+.build-track-bar--b {
+    left: 24%;
+    width: 56%;
+}
+
+.build-track-bar--c {
+    left: 50%;
+    width: 36%;
+}
+
+.build-track-milestone {
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    transform: translate(-50%, -50%);
+    background: #0f1217;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.build-track-milestone--a {
+    left: 28%;
+}
+
+.build-track-milestone--b {
+    left: 49%;
+}
+
+.build-track-milestone--c {
+    left: 39%;
+}
+
+.build-track-milestone--d {
+    left: 80%;
+}
+
+.build-track-milestone--e {
+    left: 82%;
+}
+
+.build-track-meta {
+    margin-top: 0.45rem;
+    display: flex;
+    justify-content: space-between;
+    color: #6f7580;
+    font-size: 11px;
+}
+
+.build-footer-steps {
+    margin-top: 1.15rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.9rem;
+    color: #757b86;
+    font-size: 0.87rem;
+}
+
+@media (max-width: 1023px) {
+    .build-roadmap-months {
+        left: 2rem;
+        right: 2rem;
+    }
+
+    .build-roadmap-panel {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: auto;
+        margin: 4.9rem 1rem 1rem;
+    }
+
+    .build-roadmap-timeline {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1.4rem;
+    }
+
+    .build-track-bar--a {
+        left: 4%;
+        width: 62%;
+    }
+
+    .build-track-bar--b {
+        left: 12%;
+        width: 78%;
+    }
+
+    .build-track-bar--c {
+        left: 26%;
+        width: 64%;
+    }
+}
+
+@media (max-width: 767px) {
+    .build-roadmap {
+        min-height: auto;
+    }
+
+    .build-roadmap-months {
+        font-size: 10px;
+        top: 1rem;
+    }
+
+    .build-footer-steps {
+        justify-content: space-between;
+        gap: 0.75rem;
+        font-size: 0.78rem;
+        flex-wrap: wrap;
+    }
+}
+
 /* Dropdown Styles */
 .dropdown {
     position: relative;
