@@ -638,207 +638,138 @@
             <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
                 <h2
                     class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.05] max-w-2xl">
-                    Plan the right <br> build first
+                    Get the scope right <br> before we build
                 </h2>
                 <div class="max-w-md pt-2">
                     <p class="text-lg text-zinc-400 font-light leading-relaxed mb-8">
-                        We start with discovery, nail down the technical scope, and agree on milestones
-                        before the build gets moving.
+                        We turn early ideas into a real build plan: what matters now, what can wait,
+                        how the work will be delivered, and what the first release needs to do well.
                     </p>
                     <a href="#method"
                         class="inline-flex items-center text-sm text-zinc-500 hover:text-white transition-colors font-mono">
-                        2.0 Plan <span class="ml-2">-&gt;</span>
+                        2.0 Planning <span class="ml-2">-&gt;</span>
                     </a>
                 </div>
             </div>
 
             <!-- Visualization -->
-            <div class="relative w-full h-[600px] bg-[#08090a] rounded-xl overflow-hidden flex mask-plan-flow">
-                <!-- Left Sidebar -->
-                <div class="w-80 border-r border-white/5 bg-[#08090a] flex flex-col z-20 relative">
-                    <!-- Header -->
-                    <div
-                        class="h-12 border-b border-white/5 flex items-center px-6 text-[10px] font-medium text-zinc-500 uppercase tracking-widest">
-                        Workstreams
+            <div class="method-showcase relative w-full min-h-[760px] rounded-[28px] border border-white/[0.06] overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.04),transparent_42%)] pointer-events-none"></div>
+                <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent"></div>
+
+                <div class="method-board-shell absolute inset-x-[18%] top-[250px] h-[360px] rounded-[28px] border border-white/[0.05] bg-white/[0.015] backdrop-blur-[2px]">
+                    <div class="method-board-grid absolute inset-0 grid grid-cols-4">
+                        <div class="border-r border-white/[0.05]"></div>
+                        <div class="border-r border-white/[0.05]"></div>
+                        <div class="border-r border-white/[0.05]"></div>
+                        <div></div>
                     </div>
-                    <!-- List -->
-                    <div class="p-4 space-y-1">
-                        <!-- Item 1 -->
-                        <div
-                            class="flex items-center justify-between px-3 py-2.5 rounded-md hover:bg-white/[0.02] cursor-pointer group transition-colors">
-                            <div class="flex items-center gap-3">
-                                <iconify-icon icon="solar:box-minimalistic-linear"
-                                    class="text-emerald-500/80 text-base"></iconify-icon>
-                                <span
-                                    class="text-sm text-zinc-300 font-medium group-hover:text-white transition-colors">Website
-                                    foundation</span>
-                            </div>
-                            <span class="text-xs text-zinc-600 font-mono">99</span>
-                        </div>
-                        <!-- Item 2 -->
-                        <div
-                            class="flex items-center justify-between px-3 py-2.5 rounded-md hover:bg-white/[0.02] cursor-pointer group transition-colors">
-                            <div class="flex items-center gap-3">
-                                <iconify-icon icon="solar:server-square-linear"
-                                    class="text-blue-500/80 text-base"></iconify-icon>
-                                <span
-                                    class="text-sm text-zinc-300 font-medium group-hover:text-white transition-colors">Platform
-                                    architecture</span>
-                            </div>
-                            <span class="text-xs text-zinc-600 font-mono">28</span>
-                        </div>
-                        <!-- Item 3 -->
-                        <div
-                            class="flex items-center justify-between px-3 py-2.5 rounded-md hover:bg-white/[0.02] cursor-pointer group transition-colors">
-                            <div class="flex items-center gap-3">
-                                <iconify-icon icon="solar:magic-stick-linear"
-                                    class="text-purple-500/80 text-base"></iconify-icon>
-                                <span
-                                    class="text-sm text-zinc-300 font-medium group-hover:text-white transition-colors">Core
-                                    features</span>
-                            </div>
-                            <span class="text-xs text-zinc-600 font-mono">16</span>
-                        </div>
-                        <!-- Item 4 -->
-                        <div
-                            class="flex items-center justify-between px-3 py-2.5 rounded-md hover:bg-white/[0.02] cursor-pointer group transition-colors">
-                            <div class="flex items-center gap-3">
-                                <iconify-icon icon="solar:smartphone-linear"
-                                    class="text-zinc-500 text-base"></iconify-icon>
-                                <span
-                                    class="text-sm text-zinc-300 font-medium group-hover:text-white transition-colors">Mobile
-                                    delivery</span>
-                            </div>
-                            <span class="text-xs text-zinc-600 font-mono">8</span>
-                        </div>
+                    <div class="absolute inset-x-0 top-0 flex h-14 items-center border-b border-white/[0.05] px-6 text-[11px] text-zinc-500">
+                        <div class="w-1/4">Discovery</div>
+                        <div class="w-1/4">Defined scope</div>
+                        <div class="w-1/4">In review</div>
+                        <div class="w-1/4">Approved</div>
+                    </div>
 
-                        <!-- Spacer -->
-                        <div class="h-4"></div>
-
-                        <!-- Group Item (Active) -->
-                        <div
-                            class="flex items-center justify-between px-3 py-2.5 rounded-md bg-white/[0.03] border border-white/5 cursor-pointer group relative overflow-hidden">
-                            <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-rose-500"></div>
-                            <div class="flex items-center gap-3">
-                                <iconify-icon icon="solar:globe-linear" class="text-rose-500 text-base"></iconify-icon>
-                                <span class="text-sm text-white font-medium">Q3 Launch Scope</span>
-                            </div>
-                            <span class="text-xs text-zinc-500 font-mono">21</span>
+                    <div class="method-board-card method-board-card--lead absolute left-[5%] top-[90px] w-[25%] rounded-2xl border border-white/[0.06] bg-[#0a0b0d]/85 p-4 shadow-[0_12px_50px_rgba(0,0,0,0.32)]">
+                        <div class="text-[10px] text-zinc-600 mb-3 font-mono">DISC-03</div>
+                        <div class="text-sm text-zinc-200 leading-snug">Clarify the goal of the first launch and what success looks like.</div>
+                        <div class="mt-4 flex gap-2 text-[10px] text-zinc-500">
+                            <span class="rounded-full border border-white/[0.08] px-2 py-1">Client</span>
+                            <span class="rounded-full border border-white/[0.08] px-2 py-1">Discovery</span>
                         </div>
-                        <!-- Child Items -->
-                        <div class="pl-4 mt-1 space-y-0.5">
-                            <div
-                                class="flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/[0.02] cursor-pointer group">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-500/20 border border-rose-500/50">
-                                    </div>
-                                    <span class="text-xs text-zinc-400 group-hover:text-white transition-colors">Regional
-                                        release</span>
-                                </div>
-                                <span class="text-[10px] text-zinc-700 font-mono">12</span>
-                            </div>
-                            <div
-                                class="flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/[0.02] cursor-pointer group">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-500/20 border border-rose-500/50">
-                                    </div>
-                                    <span
-                                        class="text-xs text-zinc-400 group-hover:text-white transition-colors">Feature
-                                        requests</span>
-                                </div>
-                                <span class="text-[10px] text-zinc-700 font-mono">9</span>
-                            </div>
-                        </div>
+                    </div>
 
+                    <div class="method-board-card method-board-card--scope absolute left-[32%] top-[84px] w-[26%] rounded-2xl border border-white/[0.06] bg-[#0a0b0d]/9 p-4 shadow-[0_12px_50px_rgba(0,0,0,0.25)]">
+                        <div class="text-[10px] text-zinc-600 mb-3 font-mono">PLAN-08</div>
+                        <div class="text-sm text-zinc-200 leading-snug">Map the key pages, user flows, and conversion points for phase 1.</div>
+                        <div class="mt-4 flex gap-2 text-[10px] text-zinc-500">
+                            <span class="rounded-full border border-white/[0.08] px-2 py-1">Scope</span>
+                            <span class="rounded-full border border-white/[0.08] px-2 py-1">UX</span>
+                        </div>
+                    </div>
+
+                    <div class="method-board-card method-board-card--scope absolute left-[32%] top-[188px] w-[26%] rounded-2xl border border-white/[0.06] bg-[#0a0b0d]/9 p-4 shadow-[0_12px_50px_rgba(0,0,0,0.25)]">
+                        <div class="text-[10px] text-zinc-600 mb-3 font-mono">PLAN-12</div>
+                        <div class="text-sm text-zinc-200 leading-snug">Choose the stack, integrations, and handoff approach before development starts.</div>
+                        <div class="mt-4 flex gap-2 text-[10px] text-zinc-500">
+                            <span class="rounded-full border border-white/[0.08] px-2 py-1">Tech</span>
+                            <span class="rounded-full border border-white/[0.08] px-2 py-1">Build</span>
+                        </div>
+                    </div>
+
+                    <div class="method-board-card method-board-card--review absolute left-[60%] top-[132px] w-[26%] rounded-2xl border border-emerald-500/20 bg-[#0d1612]/85 p-4 shadow-[0_12px_50px_rgba(0,0,0,0.32)]">
+                        <div class="text-[10px] text-emerald-200/60 mb-3 font-mono">READY-04</div>
+                        <div class="text-sm text-emerald-50/90 leading-snug">Review phase 1 scope, delivery order, and launch checklist with the client.</div>
+                        <div class="mt-4 flex gap-2 text-[10px] text-emerald-100/60">
+                            <span class="rounded-full border border-emerald-500/20 px-2 py-1">Review</span>
+                            <span class="rounded-full border border-emerald-500/20 px-2 py-1">Planning</span>
+                        </div>
+                    </div>
+
+                    <div class="method-board-card method-board-card--approved absolute left-[78%] top-[232px] w-[16%] rounded-2xl border border-rose-500/20 bg-[#1a1013]/88 p-4 shadow-[0_12px_50px_rgba(0,0,0,0.3)]">
+                        <div class="text-[10px] text-rose-200/60 mb-3 font-mono">GO-01</div>
+                        <div class="text-sm text-rose-50/85 leading-snug">Kickoff approved.</div>
                     </div>
                 </div>
 
-                <!-- Right Timeline -->
-                <div class="flex-1 relative bg-[#08090a] overflow-hidden group">
-                    <!-- Mouse-follow Spotlight (Optional) -->
-                    <div
-                        class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.03),transparent_40%)] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div class="method-thread-card relative z-20 ml-6 mr-6 mt-16 w-auto max-w-[420px] rounded-[26px] border border-white/[0.08] bg-[linear-gradient(180deg,rgba(22,24,28,0.92),rgba(9,10,12,0.95))] shadow-[0_30px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl md:ml-16 md:mt-20">
+                    <div class="flex items-center justify-between border-b border-white/[0.06] px-6 py-5">
+                        <div class="text-sm text-zinc-400">
+                            <span class="text-zinc-200">Project thread</span> in <span class="text-zinc-500">#planning</span>
+                        </div>
+                        <iconify-icon icon="solar:menu-dots-linear" class="text-zinc-600 text-lg"></iconify-icon>
                     </div>
 
-                    <!-- Grid -->
-                    <div class="absolute inset-0 flex pointer-events-none opacity-20">
-                        <div class="flex-1 border-r border-dashed border-zinc-700"></div>
-                        <div class="flex-1 border-r border-dashed border-zinc-700"></div>
-                        <div class="flex-1 border-r border-dashed border-zinc-700"></div>
-                        <div class="flex-1 border-r border-dashed border-zinc-700"></div>
-                        <div class="flex-1 border-r border-dashed border-zinc-700"></div>
-                        <div class="flex-1 border-r border-dashed border-zinc-700"></div>
-                    </div>
-                    <!-- Month Headers -->
-                    <div class="flex border-b border-white/5 relative z-10">
-                        <div class="flex-1 py-3 text-center text-[10px] font-mono text-zinc-600 uppercase">Feb</div>
-                        <div class="flex-1 py-3 text-center text-[10px] font-mono text-zinc-600 uppercase">Mar</div>
-                        <div class="flex-1 py-3 text-center text-[10px] font-mono text-zinc-600 uppercase">Apr</div>
-                        <div
-                            class="flex-1 py-3 text-center text-[10px] font-mono text-zinc-600 uppercase bg-white/[0.01]">
-                            May</div>
-                        <div class="flex-1 py-3 text-center text-[10px] font-mono text-zinc-600 uppercase">Jun</div>
-                        <div class="flex-1 py-3 text-center text-[10px] font-mono text-zinc-600 uppercase">Jul</div>
-                    </div>
+                    <div class="space-y-5 px-6 py-6">
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-[11px] font-medium text-zinc-200">CL</div>
+                            <div class="min-w-0">
+                                <div class="text-sm text-zinc-200">Client <span class="ml-1 text-xs text-zinc-500">6:58 PM</span></div>
+                                <p class="mt-1 text-[15px] leading-7 text-zinc-400">We need the site to feel polished quickly, but we also want room to expand it after launch.</p>
+                            </div>
+                        </div>
 
-                    <!-- Svg Connectors -->
-                    <svg class="absolute inset-0 pointer-events-none w-full h-full z-0 overflow-visible">
-                        <defs>
-                            <linearGradient id="line-gradient" x1="0" y1="0" x2="1" y2="0">
-                                <stop offset="0%" stop-color="#3f3f46" stop-opacity="0.2" />
-                                <stop offset="100%" stop-color="#3f3f46" stop-opacity="0.8" />
-                            </linearGradient>
-                        </defs>
-                        <!-- Connector: Infra (y~108) -> Split Fares (y~108) -->
-                        <path d="M 0 108 L 100 108" stroke="url(#line-gradient)" stroke-width="1" fill="none"
-                            class="opacity-50" />
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-[11px] font-medium text-emerald-200">CV</div>
+                            <div class="min-w-0">
+                                <div class="text-sm text-zinc-200">Codev <span class="ml-1 text-xs text-zinc-500">7:03 PM</span></div>
+                                <p class="mt-1 text-[15px] leading-7 text-zinc-400">Then phase 1 should stay focused: the core pages, the main enquiry flow, and the pieces you need live first.</p>
+                            </div>
+                        </div>
 
-                        <!-- Connector: Core (y~68) -> UI Refresh (y~148) -->
-                        <path d="M 0 68 C 60 68, 60 148, 250 148" stroke="url(#line-gradient)" stroke-width="1"
-                            fill="none" class="opacity-40" />
-
-                        <!-- Connector: Regional (y~244) -> Release (y~310) -->
-                        <path d="M 0 244 C 100 244, 200 310, 390 310" stroke="#f43f5e" stroke-width="1" fill="none"
-                            opacity="0.3" stroke-dasharray="4 4" />
-                    </svg>
-
-                    <!-- Timeline Bars -->
-                    <!-- UI Refresh -->
-                    <div
-                        class="absolute top-[138px] left-[35%] w-[22%] h-7 bg-[#0d1612] border border-emerald-500/20 rounded shadow-sm hover:border-emerald-500/40 transition-colors group/bar flex items-center px-2 cursor-pointer z-10">
-                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2 animate-pulse"></div>
-                        <span class="text-[10px] font-medium text-emerald-100/80 truncate">Onboarding rewrite</span>
-                        <div
-                            class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover/bar:opacity-100 transition-opacity bg-[#08090a] border border-white/10 px-2 py-1 rounded text-[10px] text-zinc-300 whitespace-nowrap z-20 pointer-events-none shadow-xl">
-                            May 12 - Jun 4
-                            <div
-                                class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-[#08090a] border-b border-r border-white/10 rotate-45">
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-[11px] font-medium text-zinc-200">CV</div>
+                            <div class="min-w-0">
+                                <div class="text-sm text-zinc-200">Codev <span class="ml-1 text-xs text-zinc-500">7:06 PM</span></div>
+                                <p class="mt-1 text-[15px] leading-7 text-zinc-400">We'll lock the scope, timeline, and technical approach before the build starts, so there are fewer surprises once we begin.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Split Fares -->
-                    <div
-                        class="absolute top-[98px] left-[15%] w-[35%] h-7 bg-[#08090a] border border-white/10 rounded shadow-sm hover:border-white/20 transition-colors group/bar flex items-center px-2 cursor-pointer z-10">
-                        <iconify-icon icon="solar:bolt-linear" class="text-zinc-500 mr-2 text-xs"></iconify-icon>
-                        <span class="text-[10px] font-medium text-zinc-400 truncate">Checkout flow</span>
-                    </div>
-
-                    <!-- Regional Launch -->
-                    <div
-                        class="absolute top-[300px] left-[55%] w-[15%] h-7 bg-[#1c1214] border border-rose-500/20 rounded shadow-sm hover:border-rose-500/40 transition-colors group/bar flex items-center px-2 cursor-pointer z-10">
-                        <div class="w-1.5 h-1.5 rounded-full bg-rose-500 mr-2"></div>
-                        <span class="text-[10px] font-medium text-rose-100/80 truncate">v1 release</span>
-                    </div>
-
-                    <!-- Current Time Marker -->
-                    <div
-                        class="absolute top-0 bottom-0 left-[48%] w-px bg-gradient-to-b from-blue-500/50 via-blue-500 to-blue-500/0 z-20 pointer-events-none">
-                        <div
-                            class="absolute top-0 -translate-x-1/2 w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)]">
+                    <div class="px-5 pb-5">
+                        <div class="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-4">
+                            <div class="text-[15px] leading-7 text-zinc-300"><span class="text-[#7f8cff]">@Codev</span> turn this into a phase 1 plan and kickoff checklist</div>
+                            <div class="mt-4 flex items-center justify-between text-zinc-500">
+                                <div class="flex items-center gap-3 text-lg">
+                                    <iconify-icon icon="solar:add-circle-linear"></iconify-icon>
+                                    <iconify-icon icon="solar:smile-circle-linear"></iconify-icon>
+                                    <iconify-icon icon="solar:link-linear"></iconify-icon>
+                                    <iconify-icon icon="solar:microphone-2-linear"></iconify-icon>
+                                </div>
+                                <button class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#5E6AD2] text-white shadow-[0_0_18px_rgba(94,106,210,0.35)]">
+                                    <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="method-showcase-footer pointer-events-none absolute bottom-8 left-0 right-0 z-[4] hidden items-center justify-center gap-16 px-10 text-[14px] text-zinc-500 md:flex">
+                    <span>1.1 Discovery</span>
+                    <span>1.2 Scope</span>
+                    <span>1.3 Technical plan</span>
+                    <span>1.4 Kickoff</span>
                 </div>
             </div>
         </div>
@@ -1194,4 +1125,5 @@
 </body>
 
 </html>
+
 

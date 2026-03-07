@@ -265,6 +265,135 @@
     padding-bottom: 0.25rem;
 }
 
+.method-showcase {
+    isolation: isolate;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.045), transparent 34%),
+        linear-gradient(180deg, rgba(11, 12, 14, 0.96) 0%, rgba(7, 8, 10, 0.98) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.02),
+        0 32px 90px rgba(0, 0, 0, 0.32);
+}
+
+.method-showcase::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 22%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.015));
+    pointer-events: none;
+    z-index: 0;
+}
+
+.method-showcase::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 180px;
+    background: linear-gradient(180deg, rgba(8, 9, 10, 0), rgba(8, 9, 10, 0.78) 45%, rgba(8, 9, 10, 0.96) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.method-board-shell {
+    overflow: hidden;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.02),
+        0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+.method-board-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 18%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent 22%, transparent 78%, rgba(255, 255, 255, 0.02));
+    pointer-events: none;
+}
+
+.method-board-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 9, 10, 0) 40%, rgba(8, 9, 10, 0.35) 76%, rgba(8, 9, 10, 0.86) 100%);
+    pointer-events: none;
+}
+
+.method-board-grid {
+    opacity: 0.9;
+}
+
+.method-board-card {
+    position: absolute;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transform: translateZ(0);
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.method-board-card:hover {
+    transform: translateY(-2px);
+}
+
+.method-board-card--lead {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(16, 18, 21, 0.9), rgba(9, 10, 12, 0.88));
+}
+
+.method-board-card--scope {
+    border-color: rgba(255, 255, 255, 0.07);
+    background: linear-gradient(180deg, rgba(15, 17, 19, 0.64), rgba(9, 10, 12, 0.8));
+}
+
+.method-board-card--review {
+    border-color: rgba(52, 211, 153, 0.18);
+    background: linear-gradient(180deg, rgba(11, 22, 18, 0.9), rgba(9, 14, 12, 0.86));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        0 24px 70px rgba(0, 0, 0, 0.34),
+        0 0 0 1px rgba(52, 211, 153, 0.03);
+}
+
+.method-board-card--approved {
+    border-color: rgba(244, 63, 94, 0.2);
+    background: linear-gradient(180deg, rgba(27, 16, 20, 0.9), rgba(20, 12, 15, 0.9));
+}
+
+.method-thread-card {
+    overflow: hidden;
+}
+
+.method-thread-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(130deg, rgba(255, 255, 255, 0.03), transparent 35%, transparent 62%, rgba(255, 255, 255, 0.025)),
+        radial-gradient(circle at top left, rgba(94, 106, 210, 0.12), transparent 34%);
+    pointer-events: none;
+}
+
+.method-thread-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+    pointer-events: none;
+}
+
+.method-showcase-footer {
+    letter-spacing: 0.01em;
+}
+
 @media (min-width: 768px) {
     .feature-panels {
         gap: 0;
@@ -286,6 +415,43 @@
     .feature-figure-stage {
         min-height: 19rem;
         margin-bottom: 2.75rem;
+    }
+
+    .method-showcase {
+        min-height: 860px;
+    }
+
+    .method-thread-card {
+        position: absolute;
+        top: 76px;
+        left: 64px;
+        margin: 0;
+        width: min(430px, calc(100% - 128px));
+    }
+
+    .method-board-shell {
+        left: 21%;
+        right: 4%;
+        top: 278px;
+        height: 430px;
+    }
+}
+
+@media (max-width: 767px) {
+    .method-showcase {
+        min-height: auto;
+        padding-bottom: 2rem;
+    }
+
+    .method-thread-card {
+        max-width: none;
+    }
+
+    .method-board-shell {
+        position: relative;
+        inset: auto;
+        height: 430px;
+        margin: 1.5rem 1rem 0;
     }
 }
 
