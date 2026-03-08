@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=20260308g">
+    <link rel="stylesheet" href="assets/css/main.css?v=20260308y">
 </head>
 
 <body id="top" class="text-zinc-400 antialiased selection:bg-[#5E6AD2] selection:text-white">
@@ -49,7 +49,7 @@
         <!-- Background Glow Effects -->
 
 
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-20">
 
             <!-- Announcement Badge -->
             <a href="#results"
@@ -87,13 +87,21 @@
             </div>
         </div>
 
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 perspective-1000 group laser-flow-bridge-shell">
+        <div class="relative z-0 w-full max-w-7xl mx-auto px-6 perspective-1000 group laser-flow-bridge-shell">
 
             <!-- Hero Image / Interface Visualization -->
 
 
             <div class="laser-flow-bridge" aria-hidden="true">
                 <div id="laser-flow-bridge" class="laser-flow-bridge-canvas"></div>
+            </div>
+
+            <div id="laser-reveal-zone" class="laser-reveal-zone" aria-hidden="true">
+                <div id="laser-flow-reveal" class="laser-reveal-layer" data-active="false">
+                    <div class="laser-reveal-surface">
+                        <img src="assets/reveal%20component.png" alt="" class="laser-reveal-image">
+                    </div>
+                </div>
             </div>
 
             <!-- Interface Container -->
@@ -113,9 +121,11 @@
                         </div>
 
                         <!-- App Content (Project Starter) -->
-                        <div class="flex h-[450px] md:h-[650px]">
+                        <div class="relative flex h-[450px] md:h-[650px]">
+
                             <!-- Sidebar -->
-                            <div class="w-56 border-r border-white/5 flex flex-col hidden md:flex bg-white/[0.01]">
+                            <div
+                                class="relative z-10 w-56 border-r border-white/5 flex flex-col hidden md:flex bg-white/[0.01]">
                                 <!-- Sidebar Header -->
                                 <div class="h-12 border-b border-white/5 flex items-center px-4 gap-2">
                                     <div
@@ -161,7 +171,7 @@
                             </div>
 
                             <!-- Main Content (Center - Project Intake) -->
-                            <div class="flex-1 flex flex-col relative bg-[#08090a]">
+                            <div class="relative z-10 flex-1 flex flex-col bg-transparent">
                                 <!-- Header -->
                                 <div class="h-12 border-b border-white/5 flex items-center justify-between px-6">
                                     <div class="flex items-center gap-2 text-xs text-zinc-500">
@@ -286,7 +296,8 @@
                             </div>
 
                             <!-- Right Sidebar (Context) -->
-                            <div class="w-64 border-l border-white/5 hidden lg:flex flex-col bg-white/[0.01]">
+                            <div
+                                class="relative z-10 w-64 border-l border-white/5 hidden lg:flex flex-col bg-white/[0.01]">
                                 <div class="h-12 border-b border-white/5 flex items-center px-4 gap-2">
                                     <iconify-icon icon="solar:stars-minimalistic-linear"
                                         class="text-[#5E6AD2]"></iconify-icon>
@@ -1502,7 +1513,7 @@
 
     <script src="assets/js/dropdown.js?v=20260308b" defer></script>
     <script src="assets/js/prompt.js?v=20260308b" defer></script>
-    <script src="assets/js/laser-flow.js?v=20260308g" defer></script>
+    <script src="assets/js/laser-flow.js?v=20260308q" defer></script>
     <script src="assets/js/main.js?v=20260308b" defer></script>
 </body>
 

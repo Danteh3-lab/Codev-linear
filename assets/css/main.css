@@ -45,7 +45,7 @@
 
 .laser-flow-bridge-shell {
     --laser-bridge-center: 50%;
-    --laser-bridge-width: min(42rem, 48vw);
+    --laser-bridge-width: min(60rem, 66vw);
     --laser-bridge-top: -21.95rem;
     --laser-bridge-height: 22.25rem;
 }
@@ -89,6 +89,74 @@
     display: block;
     mix-blend-mode: screen;
     opacity: 0.98;
+}
+
+.laser-reveal-zone {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    width: min(1852px, 100vw);
+    height: 645px;
+    transform: translateX(-50%);
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 11;
+    isolation: isolate;
+}
+
+.laser-reveal-layer {
+    --mx: -9999px;
+    --my: -9999px;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 180ms ease;
+    -webkit-mask-image: radial-gradient(circle 220px at var(--mx) var(--my),
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.94) 18%,
+            rgba(0, 0, 0, 0.62) 38%,
+            rgba(0, 0, 0, 0.18) 54%,
+            rgba(0, 0, 0, 0) 70%);
+    mask-image: radial-gradient(circle 220px at var(--mx) var(--my),
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.94) 18%,
+            rgba(0, 0, 0, 0.62) 38%,
+            rgba(0, 0, 0, 0.18) 54%,
+            rgba(0, 0, 0, 0) 70%);
+}
+
+.laser-reveal-layer[data-active="true"] {
+    opacity: 0.62;
+}
+
+.laser-reveal-surface {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: rgba(212, 216, 255, 0.78);
+}
+
+.laser-reveal-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    opacity: 0.58;
+    filter: saturate(0.86) brightness(0.7);
+}
+
+.laser-reveal-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 8%, rgba(94, 106, 210, 0.1), transparent 56%),
+        linear-gradient(180deg, rgba(10, 12, 18, 0.24) 0%, rgba(10, 12, 18, 0.08) 100%);
+    opacity: 0.52;
 }
 
 /* Subtle glowing border animation */
@@ -1325,17 +1393,35 @@
 
 @media (max-width: 1023px) {
     .laser-flow-bridge-shell {
-        --laser-bridge-width: min(28rem, 56vw);
+        --laser-bridge-width: min(42rem, 76vw);
         --laser-bridge-top: -12rem;
         --laser-bridge-height: 19rem;
+    }
+
+    .laser-reveal-zone {
+        left: calc(50% - 50vw);
+        right: calc(50% - 50vw);
+        top: calc(var(--laser-bridge-top) - 8rem);
+        bottom: 100%;
+        width: auto;
+        height: auto;
+        transform: none;
     }
 }
 
 @media (max-width: 767px) {
     .laser-flow-bridge-shell {
-        --laser-bridge-width: min(18rem, 76vw);
+        --laser-bridge-width: min(25rem, 92vw);
         --laser-bridge-top: -7rem;
         --laser-bridge-height: 15rem;
+    }
+
+    .laser-reveal-zone {
+        display: none;
+    }
+
+    .laser-reveal-layer {
+        display: none;
     }
 
     .laser-flow-bridge {
@@ -1358,6 +1444,14 @@
 @media (prefers-reduced-motion: reduce) {
     .laser-flow-bridge {
         opacity: 0.62;
+    }
+
+    .laser-reveal-zone {
+        display: none;
+    }
+
+    .laser-reveal-layer {
+        display: none;
     }
 }
 

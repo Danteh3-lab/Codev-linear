@@ -226,6 +226,8 @@ void main(){
             this.shell = container.closest('.laser-flow-bridge-shell');
             this.target = document.getElementById('project-starter-playground');
             this.promptWindow = this.target ? this.target.querySelector('.prompt-container') : null;
+            this.revealZone = document.getElementById('laser-reveal-zone');
+            this.revealLayer = document.getElementById('laser-flow-reveal');
             this.THREE = window.THREE;
             this.renderer = null;
             this.uniforms = null;
@@ -236,8 +238,15 @@ void main(){
             this.fade = 0;
             this.clock = null;
             this.previousTime = 0;
+            this.shellCenter = 0;
+            this.revealCenter = 0;
+            this.pointerFineQuery = window.matchMedia('(pointer: fine)');
+            this.reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
             this.handleResize = this.handleResize.bind(this);
             this.handleVisibility = this.handleVisibility.bind(this);
+            this.handlePointerMove = this.handlePointerMove.bind(this);
+            this.resetReveal = this.resetReveal.bind(this);
+            this.handlePreferenceChange = this.handlePreferenceChange.bind(this);
             this.animate = this.animate.bind(this);
         }
 
@@ -295,16 +304,16 @@ void main(){
                 uBeamYFrac: { value: -0.494 },
                 uFlowSpeed: { value: 0.35 },
                 uVLenFactor: { value: 4.0 },
-                uHLenFactor: { value: 0.86 },
-                uFogIntensity: { value: 1.05 },
+                uHLenFactor: { value: 1.34 },
+                uFogIntensity: { value: 1.34 },
                 uFogScale: { value: 0.3 },
                 uWSpeed: { value: 15.0 },
-                uWIntensity: { value: 8.8 },
+                uWIntensity: { value: 10.8 },
                 uFlowStrength: { value: 0.32 },
                 uDecay: { value: 1.1 },
                 uFalloffStart: { value: 1.2 },
                 uFogFallSpeed: { value: 0.6 },
-                uColor: { value: new THREE.Vector3(0.4627, 0.4039, 0.5137) },
+                uColor: { value: new THREE.Vector3(0.5451, 0.5725, 0.9647) },
                 uFade: { value: 0 }
             };
 
@@ -332,6 +341,19 @@ void main(){
         bindEvents() {
             window.addEventListener('resize', this.handleResize);
             document.addEventListener('visibilitychange', this.handleVisibility);
+            this.pointerFineQuery.addEventListener('change', this.handlePreferenceChange);
+            this.reduceMotionQuery.addEventListener('change', this.handlePreferenceChange);
+            document.addEventListener('pointermove', this.handlePointerMove, { passive: true });
+            document.addEventListener('mousemove', this.handlePointerMove, { passive: true });
+            document.addEventListener('pointerdown', this.handlePointerMove, { passive: true });
+            this.shell.addEventListener('pointermove', this.handlePointerMove, { passive: true });
+            this.shell.addEventListener('mousemove', this.handlePointerMove, { passive: true });
+            this.shell.addEventListener('pointerdown', this.handlePointerMove, { passive: true });
+            this.shell.addEventListener('pointerenter', this.handlePointerMove, { passive: true });
+            this.shell.addEventListener('mouseenter', this.handlePointerMove, { passive: true });
+            this.shell.addEventListener('pointerleave', this.resetReveal, { passive: true });
+            this.shell.addEventListener('mouseleave', this.resetReveal, { passive: true });
+            this.handlePreferenceChange();
         }
 
         updateAlignment() {
@@ -339,6 +361,70 @@ void main(){
             const targetRect = (this.promptWindow || this.target).getBoundingClientRect();
             const center = targetRect.left + (targetRect.width / 2) - shellRect.left;
             this.shell.style.setProperty('--laser-bridge-center', `${center}px`);
+            this.shellCenter = center;
+        }
+
+        handlePreferenceChange() {
+            if (!this.revealLayer) {
+                return;
+            }
+
+            const enabled = this.pointerFineQuery.matches && !this.reduceMotionQuery.matches && window.innerWidth > 767;
+            this.revealLayer.dataset.enabled = enabled ? 'true' : 'false';
+
+            if (!enabled) {
+                this.resetReveal();
+            }
+        }
+
+        handlePointerMove(event) {
+            if (!this.revealLayer || !this.revealZone || this.revealLayer.dataset.enabled !== 'true') {
+                return;
+            }
+
+            const zoneRect = this.revealZone.getBoundingClientRect();
+            const clientX = typeof event.clientX === 'number' ? event.clientX : 0;
+            const clientY = typeof event.clientY === 'number' ? event.clientY : 0;
+
+            if (!clientX && !clientY) {
+                return;
+            }
+
+            const insideRevealZone = clientX >= zoneRect.left - 40
+                && clientX <= zoneRect.right + 40
+                && clientY >= zoneRect.top - 24
+                && clientY <= zoneRect.bottom + 24;
+
+            if (!insideRevealZone) {
+                this.resetReveal();
+                return;
+            }
+
+            const zoneX = clientX - zoneRect.left;
+            const zoneY = clientY - zoneRect.top;
+            const withinVerticalBand = zoneY >= -24
+                && zoneY <= zoneRect.height + 24;
+
+            if (!withinVerticalBand) {
+                this.resetReveal();
+                return;
+            }
+
+            const clampedX = Math.max(-30, Math.min(zoneRect.width + 30, zoneX));
+            const clampedY = Math.max(-30, Math.min(zoneRect.height + 30, zoneY));
+            this.revealLayer.style.setProperty('--mx', `${clampedX}px`);
+            this.revealLayer.style.setProperty('--my', `${clampedY}px`);
+            this.revealLayer.dataset.active = 'true';
+        }
+
+        resetReveal() {
+            if (!this.revealLayer) {
+                return;
+            }
+
+            this.revealLayer.style.setProperty('--mx', '-9999px');
+            this.revealLayer.style.setProperty('--my', '-9999px');
+            this.revealLayer.dataset.active = 'false';
         }
 
         handleResize() {
@@ -361,23 +447,23 @@ void main(){
 
                 if (window.innerWidth <= 767) {
                     this.uniforms.uVLenFactor.value = 2.4;
-                    this.uniforms.uHLenFactor.value = 0.56;
-                    this.uniforms.uFogIntensity.value = 0.34;
-                    this.uniforms.uWIntensity.value = 4.8;
+                    this.uniforms.uHLenFactor.value = 0.92;
+                    this.uniforms.uFogIntensity.value = 0.56;
+                    this.uniforms.uWIntensity.value = 6.0;
                     this.uniforms.uFlowStrength.value = 0.24;
                     this.uniforms.uBeamYFrac.value = -0.24;
                 } else if (window.innerWidth <= 1023) {
                     this.uniforms.uVLenFactor.value = 3.1;
-                    this.uniforms.uHLenFactor.value = 0.68;
-                    this.uniforms.uFogIntensity.value = 0.58;
-                    this.uniforms.uWIntensity.value = 6.6;
+                    this.uniforms.uHLenFactor.value = 1.14;
+                    this.uniforms.uFogIntensity.value = 0.9;
+                    this.uniforms.uWIntensity.value = 8.6;
                     this.uniforms.uFlowStrength.value = 0.28;
                     this.uniforms.uBeamYFrac.value = -0.32;
                 } else {
                     this.uniforms.uVLenFactor.value = 4.0;
-                    this.uniforms.uHLenFactor.value = 0.86;
-                    this.uniforms.uFogIntensity.value = 1.05;
-                    this.uniforms.uWIntensity.value = 8.8;
+                    this.uniforms.uHLenFactor.value = 1.34;
+                    this.uniforms.uFogIntensity.value = 1.34;
+                    this.uniforms.uWIntensity.value = 10.8;
                     this.uniforms.uFlowStrength.value = 0.32;
                     this.uniforms.uBeamYFrac.value = -0.494;
                 }
