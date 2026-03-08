@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=20260308a">
+    <link rel="stylesheet" href="assets/css/main.css?v=20260308g">
 </head>
 
 <body id="top" class="text-zinc-400 antialiased selection:bg-[#5E6AD2] selection:text-white">
@@ -87,15 +87,18 @@
             </div>
         </div>
 
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 perspective-1000 group">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 perspective-1000 group laser-flow-bridge-shell">
 
             <!-- Hero Image / Interface Visualization -->
 
 
+            <div class="laser-flow-bridge" aria-hidden="true">
+                <div id="laser-flow-bridge" class="laser-flow-bridge-canvas"></div>
+            </div>
 
             <!-- Interface Container -->
             <div
-                class="relative bg-[#08090a] rounded-xl overflow-hidden shadow-2xl transition-transform duration-700 ease-out transform group-hover:scale-[1.01] group-hover:-translate-y-1">
+                class="relative z-10 bg-[#08090a] rounded-xl overflow-hidden shadow-2xl transition-transform duration-700 ease-out transform group-hover:scale-[1.01] group-hover:-translate-y-1">
 
                 <div class="animated-border w-full h-full p-[1px]">
                     <div class="w-full h-full rounded-xl overflow-hidden bg-[#08090a] relative">
@@ -1495,9 +1498,11 @@
 
     <!-- Typewriter Effect -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js" defer></script>
 
     <script src="assets/js/dropdown.js?v=20260308b" defer></script>
     <script src="assets/js/prompt.js?v=20260308b" defer></script>
+    <script src="assets/js/laser-flow.js?v=20260308g" defer></script>
     <script src="assets/js/main.js?v=20260308b" defer></script>
 </body>
 

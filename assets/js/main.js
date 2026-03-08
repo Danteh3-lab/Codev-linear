@@ -1,6 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const DropdownCtor = window.Dropdown;
+    const initLaserFlowBridge = window.initLaserFlowBridge;
     const PromptCtor = window.Prompt;
+
+    if (typeof initLaserFlowBridge === 'function') {
+        initLaserFlowBridge();
+    }
+
     if (typeof DropdownCtor !== 'function' || typeof PromptCtor !== 'function') {
         return;
     }
