@@ -1,4 +1,4 @@
-﻿export class Dropdown {
+class Dropdown {
     constructor(selector, onChange) {
         this.dropdown = document.querySelector(selector);
         if (!this.dropdown) {
@@ -69,3 +69,4 @@
     }
 }
 
+window.Dropdown = Dropdown;

@@ -1,7 +1,10 @@
-﻿import { Dropdown } from './dropdown.js';
-import { Prompt } from './prompt.js';
-
 document.addEventListener('DOMContentLoaded', () => {
+    const DropdownCtor = window.Dropdown;
+    const PromptCtor = window.Prompt;
+    if (typeof DropdownCtor !== 'function' || typeof PromptCtor !== 'function') {
+        return;
+    }
+
     document.querySelectorAll('a[data-coming-soon="true"]').forEach((link) => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
@@ -28,18 +31,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const promptSystem = new Prompt('#project-starter-playground');
-    new Dropdown('#service-dropdown', (value) => promptSystem.setAIModel(value));
+    const promptSystem = new PromptCtor('#project-starter-playground', { autoplay: true });
+    new DropdownCtor('#service-dropdown', (value) => {
+        promptSystem.stopAutoplay();
+        promptSystem.setAIModel(value);
+    });
 
     const form = document.getElementById('prompt-form');
     if (!form) {
         return;
     }
 
+    const input = form.querySelector('input[name="prompt"]');
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const input = form.querySelector('input[name="prompt"]');
         if (!input) {
             return;
         }
@@ -48,4 +55,3 @@ document.addEventListener('DOMContentLoaded', () => {
         input.value = '';
     });
 });
-
