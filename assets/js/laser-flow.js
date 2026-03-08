@@ -305,15 +305,15 @@ void main(){
                 uFlowSpeed: { value: 0.35 },
                 uVLenFactor: { value: 6.9 },
                 uHLenFactor: { value: 2.34 },
-                uFogIntensity: { value: 2.1 },
+                uFogIntensity: { value: 2.55 },
                 uFogScale: { value: 0.3 },
                 uWSpeed: { value: 15.0 },
-                uWIntensity: { value: 17.8 },
-                uFlowStrength: { value: 0.42 },
+                uWIntensity: { value: 20.6 },
+                uFlowStrength: { value: 0.48 },
                 uDecay: { value: 1.1 },
                 uFalloffStart: { value: 1.2 },
                 uFogFallSpeed: { value: 0.6 },
-                uColor: { value: new THREE.Vector3(0.5451, 0.5725, 0.9647) },
+                uColor: { value: new THREE.Vector3(0.647, 0.682, 1.0) },
                 uFade: { value: 0 }
             };
 
@@ -448,23 +448,23 @@ void main(){
                 if (window.innerWidth <= 767) {
                     this.uniforms.uVLenFactor.value = 4.2;
                     this.uniforms.uHLenFactor.value = 1.56;
-                    this.uniforms.uFogIntensity.value = 0.94;
-                    this.uniforms.uWIntensity.value = 10.2;
-                    this.uniforms.uFlowStrength.value = 0.3;
+                    this.uniforms.uFogIntensity.value = 1.08;
+                    this.uniforms.uWIntensity.value = 11.6;
+                    this.uniforms.uFlowStrength.value = 0.34;
                     this.uniforms.uBeamYFrac.value = -0.24;
                 } else if (window.innerWidth <= 1023) {
                     this.uniforms.uVLenFactor.value = 5.4;
                     this.uniforms.uHLenFactor.value = 1.95;
-                    this.uniforms.uFogIntensity.value = 1.44;
-                    this.uniforms.uWIntensity.value = 14.4;
-                    this.uniforms.uFlowStrength.value = 0.35;
+                    this.uniforms.uFogIntensity.value = 1.76;
+                    this.uniforms.uWIntensity.value = 16.8;
+                    this.uniforms.uFlowStrength.value = 0.4;
                     this.uniforms.uBeamYFrac.value = -0.32;
                 } else {
                     this.uniforms.uVLenFactor.value = 6.9;
                     this.uniforms.uHLenFactor.value = 2.34;
-                    this.uniforms.uFogIntensity.value = 2.1;
-                    this.uniforms.uWIntensity.value = 17.8;
-                    this.uniforms.uFlowStrength.value = 0.42;
+                    this.uniforms.uFogIntensity.value = 2.55;
+                    this.uniforms.uWIntensity.value = 20.6;
+                    this.uniforms.uFlowStrength.value = 0.48;
                     this.uniforms.uBeamYFrac.value = -0.494;
                 }
             });

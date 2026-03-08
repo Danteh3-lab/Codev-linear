@@ -59,7 +59,7 @@
     pointer-events: none;
     z-index: 12;
     overflow: hidden;
-    opacity: 0.98;
+    opacity: 1;
     -webkit-mask-image: linear-gradient(to bottom,
             rgba(0, 0, 0, 0) 0%,
             rgba(0, 0, 0, 0.92) 20%,
@@ -88,7 +88,8 @@
     height: 100% !important;
     display: block;
     mix-blend-mode: screen;
-    opacity: 0.98;
+    opacity: 1;
+    filter: drop-shadow(0 0 18px rgba(94, 106, 210, 0.22)) drop-shadow(0 0 44px rgba(184, 185, 247, 0.16));
 }
 
 .laser-reveal-zone {
