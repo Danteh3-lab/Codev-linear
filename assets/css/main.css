@@ -45,9 +45,9 @@
 
 .laser-flow-bridge-shell {
     --laser-bridge-center: 50%;
-    --laser-bridge-width: min(60rem, 66vw);
-    --laser-bridge-top: -21.95rem;
-    --laser-bridge-height: 22.25rem;
+    --laser-bridge-width: min(102rem, 100vw);
+    --laser-bridge-top: -37.2rem;
+    --laser-bridge-height: 37.5rem;
 }
 
 .laser-flow-bridge {
@@ -1393,9 +1393,9 @@
 
 @media (max-width: 1023px) {
     .laser-flow-bridge-shell {
-        --laser-bridge-width: min(42rem, 76vw);
-        --laser-bridge-top: -12rem;
-        --laser-bridge-height: 19rem;
+        --laser-bridge-width: min(69rem, 100vw);
+        --laser-bridge-top: -23.75rem;
+        --laser-bridge-height: 30.75rem;
     }
 
     .laser-reveal-zone {
@@ -1411,9 +1411,9 @@
 
 @media (max-width: 767px) {
     .laser-flow-bridge-shell {
-        --laser-bridge-width: min(25rem, 92vw);
-        --laser-bridge-top: -7rem;
-        --laser-bridge-height: 15rem;
+        --laser-bridge-width: min(42rem, 100vw);
+        --laser-bridge-top: -15.5rem;
+        --laser-bridge-height: 24rem;
     }
 
     .laser-reveal-zone {

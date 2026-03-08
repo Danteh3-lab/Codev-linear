@@ -303,13 +303,13 @@ void main(){
                 uBeamXFrac: { value: 0.0 },
                 uBeamYFrac: { value: -0.494 },
                 uFlowSpeed: { value: 0.35 },
-                uVLenFactor: { value: 4.0 },
-                uHLenFactor: { value: 1.34 },
-                uFogIntensity: { value: 1.34 },
+                uVLenFactor: { value: 6.9 },
+                uHLenFactor: { value: 2.34 },
+                uFogIntensity: { value: 2.1 },
                 uFogScale: { value: 0.3 },
                 uWSpeed: { value: 15.0 },
-                uWIntensity: { value: 10.8 },
-                uFlowStrength: { value: 0.32 },
+                uWIntensity: { value: 17.8 },
+                uFlowStrength: { value: 0.42 },
                 uDecay: { value: 1.1 },
                 uFalloffStart: { value: 1.2 },
                 uFogFallSpeed: { value: 0.6 },
@@ -446,25 +446,25 @@ void main(){
                 this.uniforms.iResolution.value.set(width * pixelRatio, height * pixelRatio, pixelRatio);
 
                 if (window.innerWidth <= 767) {
-                    this.uniforms.uVLenFactor.value = 2.4;
-                    this.uniforms.uHLenFactor.value = 0.92;
-                    this.uniforms.uFogIntensity.value = 0.56;
-                    this.uniforms.uWIntensity.value = 6.0;
-                    this.uniforms.uFlowStrength.value = 0.24;
+                    this.uniforms.uVLenFactor.value = 4.2;
+                    this.uniforms.uHLenFactor.value = 1.56;
+                    this.uniforms.uFogIntensity.value = 0.94;
+                    this.uniforms.uWIntensity.value = 10.2;
+                    this.uniforms.uFlowStrength.value = 0.3;
                     this.uniforms.uBeamYFrac.value = -0.24;
                 } else if (window.innerWidth <= 1023) {
-                    this.uniforms.uVLenFactor.value = 3.1;
-                    this.uniforms.uHLenFactor.value = 1.14;
-                    this.uniforms.uFogIntensity.value = 0.9;
-                    this.uniforms.uWIntensity.value = 8.6;
-                    this.uniforms.uFlowStrength.value = 0.28;
+                    this.uniforms.uVLenFactor.value = 5.4;
+                    this.uniforms.uHLenFactor.value = 1.95;
+                    this.uniforms.uFogIntensity.value = 1.44;
+                    this.uniforms.uWIntensity.value = 14.4;
+                    this.uniforms.uFlowStrength.value = 0.35;
                     this.uniforms.uBeamYFrac.value = -0.32;
                 } else {
-                    this.uniforms.uVLenFactor.value = 4.0;
-                    this.uniforms.uHLenFactor.value = 1.34;
-                    this.uniforms.uFogIntensity.value = 1.34;
-                    this.uniforms.uWIntensity.value = 10.8;
-                    this.uniforms.uFlowStrength.value = 0.32;
+                    this.uniforms.uVLenFactor.value = 6.9;
+                    this.uniforms.uHLenFactor.value = 2.34;
+                    this.uniforms.uFogIntensity.value = 2.1;
+                    this.uniforms.uWIntensity.value = 17.8;
+                    this.uniforms.uFlowStrength.value = 0.42;
                     this.uniforms.uBeamYFrac.value = -0.494;
                 }
             });
