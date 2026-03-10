@@ -115,7 +115,9 @@
 
             <div class="laser-flow-bridge" aria-hidden="true">
                 <div id="laser-flow-bridge" class="laser-flow-bridge-canvas">
-                    <video class="laser-flow-bridge-media" autoplay muted loop playsinline preload="auto">
+                    <video class="laser-flow-bridge-media" autoplay muted loop playsinline preload="auto"
+                        disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
+                        tabindex="-1" aria-hidden="true">
                         <source src="assets/webm/laser-beam.webm" type="video/webm">
                     </video>
                 </div>
