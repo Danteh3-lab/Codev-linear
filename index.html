@@ -13,17 +13,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=20260308ac">
+    <link rel="stylesheet" href="assets/css/main.css?v=20260309video26">
 </head>
 
 <body id="top" class="text-zinc-400 antialiased selection:bg-[#5E6AD2] selection:text-white">
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 border-b border-white/[0.08] bg-[#08090a]/80 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-            <div class="flex items-center gap-8">
-                <a href="#top" class="text-white font-medium text-lg tracking-tighter flex items-center gap-2.5">
-                    <img src="assets/logo/logo.png" alt="Codev Logo" class="h-10 w-10 object-contain brightness-0 invert opacity-90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+            <div class="flex items-center gap-4 md:gap-8 min-w-0">
+                <a href="#top" class="text-white font-medium text-base sm:text-lg tracking-tighter flex items-center gap-2 md:gap-2.5 min-w-0">
+                    <img src="assets/logo/logo.png" alt="Codev Logo" class="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 object-contain brightness-0 invert opacity-90 shrink-0">
                     Codev
                 </a>
                 <div class="hidden md:flex items-center gap-6 text-sm font-normal">
@@ -34,26 +34,47 @@
                     <a href="#results" class="hover:text-white transition-colors duration-200">Start</a>
                 </div>
             </div>
-            <div class="flex items-center gap-4 text-xs font-medium">
+            <div class="flex items-center gap-2 sm:gap-4 text-xs font-medium">
                 <a href="#method" class="hidden sm:block hover:text-white transition-colors">See our process.</a>
                 <a href="#results"
-                    class="bg-white/10 hover:bg-white/15 text-white px-3 py-1.5 rounded-full border border-white/10 transition-all duration-200 shadow-[0_0_10px_rgba(255,255,255,0.05)]">
+                    class="bg-white/10 hover:bg-white/15 text-white px-3 sm:px-3.5 py-1.5 rounded-full border border-white/10 transition-all duration-200 shadow-[0_0_10px_rgba(255,255,255,0.05)] whitespace-nowrap">
                     Start your project.
                 </a>
+                <button id="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav-panel"
+                    class="md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white transition-colors hover:bg-white/[0.08]">
+                    <span class="sr-only">Open navigation</span>
+                    <span class="mobile-nav-toggle-lines" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
             </div>
         </div>
     </nav>
 
+    <div id="mobile-nav-backdrop" class="mobile-nav-backdrop md:hidden" hidden></div>
+    <div id="mobile-nav-panel" class="mobile-nav-panel md:hidden" hidden>
+        <div class="mobile-nav-sheet">
+            <a href="#features" data-mobile-nav-link class="mobile-nav-link">Services</a>
+            <a href="#method" data-mobile-nav-link class="mobile-nav-link">Process</a>
+            <a href="#customers" data-mobile-nav-link class="mobile-nav-link">Clients</a>
+            <a href="#results" data-mobile-nav-link class="mobile-nav-link">Results</a>
+            <a href="#results" data-mobile-nav-link class="mobile-nav-link">Start</a>
+            <a href="#method" data-mobile-nav-link class="mobile-nav-link mobile-nav-link--secondary">See our process.</a>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <main class="relative pt-32 pb-20 overflow-hidden">
+    <main class="relative pt-28 md:pt-32 pb-16 md:pb-20 overflow-hidden">
         <!-- Background Glow Effects -->
 
 
-        <div class="max-w-5xl mx-auto px-6 text-center relative z-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-20">
 
             <!-- Announcement Badge -->
             <a href="#results"
-                class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors mb-8 group">
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors mb-6 md:mb-8 group max-w-full">
                 <span class="text-xs text-[#8a8f98] group-hover:text-white transition-colors">Development partner for
                     people and businesses</span>
                 <iconify-icon icon="solar:arrow-right-linear" width="12"
@@ -61,25 +82,25 @@
             </a>
 
             <!-- Main Heading -->
-            <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-white mb-6 leading-[1.1]">
+            <h1 class="text-[2.7rem] sm:text-5xl md:text-7xl font-medium tracking-tight text-white mb-5 md:mb-6 leading-[1.02] sm:leading-[1.08] md:leading-[1.1]">
                 Build your next website or app<br>
                 <span class="text-gradient-primary">with a senior dev partner.</span>
             </h1>
 
             <!-- Subheading -->
-            <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed font-light mb-10">
+            <p class="text-base sm:text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed font-light mb-8 md:mb-10">
                 Codev helps people and businesses scope the work, build the product,
                 and keep improving it after launch, with clear communication throughout.
             </p>
 
             <!-- CTA Actions -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-14 sm:mb-16 md:mb-20 max-w-sm sm:max-w-none mx-auto">
                 <button
-                    class="h-10 px-6 rounded-full bg-[#EBEBED] hover:bg-white text-black font-medium text-sm transition-all duration-200 shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center gap-2">
+                    class="h-10 px-6 rounded-full bg-[#EBEBED] hover:bg-white text-black font-medium text-sm transition-all duration-200 shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2 w-full sm:w-auto">
                     Start your project.
                 </button>
                 <button
-                    class="h-10 px-6 rounded-full glass-panel text-white hover:bg-white/5 font-medium text-sm transition-all duration-200 flex items-center gap-2 group">
+                    class="h-10 px-6 rounded-full glass-panel text-white hover:bg-white/5 font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 group w-full sm:w-auto">
                     <span class="opacity-70">See our process.</span>
                     <iconify-icon icon="solar:play-circle-linear" width="18"
                         class="text-zinc-400 group-hover:text-white transition-colors"></iconify-icon>
@@ -87,13 +108,17 @@
             </div>
         </div>
 
-        <div class="relative z-0 w-full max-w-7xl mx-auto px-6 perspective-1000 group laser-flow-bridge-shell">
+        <div class="relative z-0 w-full max-w-7xl mx-auto px-4 sm:px-6 perspective-1000 group laser-flow-bridge-shell">
 
             <!-- Hero Image / Interface Visualization -->
 
 
             <div class="laser-flow-bridge" aria-hidden="true">
-                <div id="laser-flow-bridge" class="laser-flow-bridge-canvas"></div>
+                <div id="laser-flow-bridge" class="laser-flow-bridge-canvas">
+                    <video class="laser-flow-bridge-media" autoplay muted loop playsinline preload="auto">
+                        <source src="assets/webm/laser-beam.webm" type="video/webm">
+                    </video>
+                </div>
             </div>
 
             <div id="laser-reveal-zone" class="laser-reveal-zone" aria-hidden="true">
@@ -106,7 +131,7 @@
 
             <!-- Interface Container -->
             <div
-                class="relative z-10 bg-[#08090a] rounded-xl overflow-hidden shadow-2xl transition-transform duration-700 ease-out transform group-hover:scale-[1.01] group-hover:-translate-y-1">
+                class="relative z-10 bg-[#08090a] rounded-[20px] sm:rounded-xl overflow-hidden shadow-2xl transition-transform duration-700 ease-out transform group-hover:scale-[1.01] group-hover:-translate-y-1">
 
                 <div class="animated-border w-full h-full p-[1px]">
                     <div class="w-full h-full rounded-xl overflow-hidden bg-[#08090a] relative">
@@ -121,7 +146,7 @@
                         </div>
 
                         <!-- App Content (Project Starter) -->
-                        <div class="relative flex h-[450px] md:h-[650px]">
+                        <div class="relative flex h-[390px] sm:h-[450px] md:h-[650px]">
 
                             <!-- Sidebar -->
                             <div
@@ -191,10 +216,10 @@
 
                                 <!-- Intake Body -->
                                 <div id="project-starter-playground"
-                                    class="flex-1 flex flex-col p-8 relative overflow-hidden">
+                                    class="flex-1 flex flex-col p-4 sm:p-6 md:p-8 relative overflow-hidden">
                                     <!-- Background Logo (Interactive Request) -->
                                     <div
-                                        class="absolute top-[20%] left-1/2 -translate-x-1/2 w-[200px] h-[200px] pointer-events-none z-0">
+                                        class="absolute top-[20%] left-1/2 -translate-x-1/2 w-[140px] h-[140px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] pointer-events-none z-0">
                                         <img src="assets/logo/logo.png"
                                             class="w-full h-full object-contain opacity-[0.05] brightness-0 invert"
                                             alt="Codev Logo">
@@ -208,20 +233,20 @@
 
                                         <!-- Initial Content (Will be cleared on interaction) -->
                                         <div
-                                            class="flex flex-col items-center pt-0 justify-start text-center max-w-md mx-auto space-y-2">
-                                            <h3 class="text-2xl font-medium text-white tracking-tight">Scope Your
+                                            class="flex flex-col items-center pt-1 sm:pt-0 justify-start text-center max-w-md mx-auto space-y-2 sm:space-y-2.5">
+                                            <h3 class="text-xl sm:text-2xl font-medium text-white tracking-tight">Scope Your
                                                 Build</h3>
 
                                             <!-- Typed.js Text -->
-                                            <div class="h-12 flex items-center justify-center">
-                                                <p class="text-sm text-zinc-500 leading-relaxed min-h-[48px]">
+                                            <div class="h-10 sm:h-12 flex items-center justify-center">
+                                                <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed min-h-[40px] sm:min-h-[48px]">
                                                     <span id="prompts-sample"></span>
                                                 </p>
                                             </div>
 
                                             <!-- Quick tags -->
                                             <div
-                                                class="flex flex-wrap items-center justify-center gap-2 pt-2 opacity-60">
+                                                class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-2 opacity-60">
                                                 <span
                                                     class="text-[10px] text-zinc-600 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-colors">Business
                                                     Website</span>
@@ -237,10 +262,10 @@
 
                                     <!-- Interactive Form (Fixed at bottom) -->
                                     <form id="prompt-form"
-                                        class="mt-4 relative z-20 w-full bg-white/[0.02] border border-white/[0.08] rounded-xl p-2 pl-3 flex items-center gap-3 focus-within:border-[#5E6AD2]/40 transition-colors shadow-lg shadow-black/20">
+                                        class="mt-4 relative z-20 w-full bg-white/[0.02] border border-white/[0.08] rounded-xl p-2.5 sm:p-2 sm:pl-3 flex flex-wrap sm:flex-nowrap items-center gap-2.5 sm:gap-3 focus-within:border-[#5E6AD2]/40 transition-colors shadow-lg shadow-black/20">
 
                                         <!-- Dropdown -->
-                                        <div class="dropdown relative min-w-[120px]" id="service-dropdown">
+                                        <div class="dropdown relative w-full sm:w-auto sm:min-w-[120px]" id="service-dropdown">
                                             <input type="hidden" class="dropdown-input" value="Website Build">
                                             <button type="button"
                                                 class="dropdown-toggle text-xs font-medium text-zinc-300 hover:text-white transition-colors bg-white/[0.03] hover:bg-white/[0.06] py-1.5 px-2.5 rounded-lg border border-white/5">
@@ -281,13 +306,13 @@
                                             </ul>
                                         </div>
 
-                                        <div class="h-6 w-px bg-white/5"></div>
+                                        <div class="hidden sm:block h-6 w-px bg-white/5"></div>
 
                                         <input type="text" name="prompt" placeholder="Describe what you need built..."
-                                            class="bg-transparent border-none outline-none text-white text-sm flex-1 placeholder:text-zinc-600 h-full py-1">
+                                            class="order-3 sm:order-none w-full sm:w-auto min-w-0 bg-transparent border-none outline-none text-white text-sm flex-1 placeholder:text-zinc-600 h-full py-1">
 
                                         <button type="submit"
-                                            class="bg-[#EBEBED] hover:bg-white text-black text-xs font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                                            class="ml-auto sm:ml-0 bg-[#EBEBED] hover:bg-white text-black text-xs font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap shadow-[0_0_15px_rgba(255,255,255,0.1)]">
                                             Ship it
                                             <iconify-icon icon="solar:arrow-right-linear" width="12"></iconify-icon>
                                         </button>
@@ -356,7 +381,7 @@
 
     <!-- Social Proof -->
     <!-- Social Proof (Carousel) -->
-    <section id="customers" class="py-12 overflow-hidden relative border-b border-white/[0.02]">
+    <section id="customers" class="py-10 md:py-12 overflow-hidden relative border-b border-white/[0.02]">
         <div class="w-full max-w-[1400px] mx-auto px-6 relative"
             style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
 
@@ -499,11 +524,11 @@
     </section>
 
     <!-- New Philosophy / Concept Section -->
-    <section id="features" class="py-24 border-b border-white/[0.04]">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="features" class="py-20 md:py-24 border-b border-white/[0.04]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <!-- Main Headline -->
-            <div class="feature-intro max-w-[980px] mb-24 md:mb-28">
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#8a8f98] leading-[1.06]">
+            <div class="feature-intro max-w-[980px] mb-16 md:mb-28">
+                <h2 class="text-[2.15rem] sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#8a8f98] leading-[1.06]">
                     <span class="text-white">A development partner for people and businesses.</span>
                     Codev gives you senior engineering, a clear scope, and a straightforward path
                     from idea to launch.
@@ -649,16 +674,16 @@
 
     <!-- Features Grid -->
     <!-- Plan Section -->
-    <section id="method" class="py-32 scroll-mt-44 md:scroll-mt-52">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="method" class="py-20 md:py-32 scroll-mt-24 md:scroll-mt-52">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <!-- Header -->
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-10 md:gap-12 mb-14 md:mb-20">
                 <h2
-                    class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.05] max-w-2xl">
+                    class="text-[2.15rem] sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.05] max-w-2xl">
                     Get the scope right <br> before we build
                 </h2>
                 <div class="max-w-md pt-2">
-                    <p class="text-lg text-zinc-400 font-light leading-relaxed mb-8">
+                    <p class="text-base sm:text-lg text-zinc-400 font-light leading-relaxed mb-6 md:mb-8">
                         We turn early ideas into a real build plan: what matters now, what can wait,
                         how the work will be delivered, and what the first release needs to do well.
                     </p>
@@ -862,16 +887,16 @@
     </section>
 
     <!-- Build Section -->
-    <section class="py-32 border-b border-white/[0.04] bg-[#08090a]">
-        <div class="max-w-7xl mx-auto px-6">
+    <section class="py-20 md:py-32 border-b border-white/[0.04] bg-[#08090a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <!-- Text Header -->
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-24">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-10 md:gap-12 mb-14 md:mb-24">
                 <h2
-                    class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.05] max-w-2xl">
+                    class="text-[2.15rem] sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.05] max-w-2xl">
                     Build with senior <br> engineering support
                 </h2>
                 <div class="max-w-md pt-2">
-                    <p class="text-lg text-zinc-400 font-light leading-relaxed mb-8">
+                    <p class="text-base sm:text-lg text-zinc-400 font-light leading-relaxed mb-6 md:mb-8">
                         Feedback, bugs, and new requests all turn into a clear queue, so everyone knows
                         what is being built next and why.
                     </p>
@@ -888,10 +913,10 @@
             <div
                 class="relative w-full overflow-hidden bg-[#111214] rounded-xl border-l border-white/[0.04] [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%),linear-gradient(to_right,black_85%,transparent_100%)] [mask-composite:intersect] [-webkit-mask-composite:source-in] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%),linear-gradient(to_right,black_85%,transparent_100%)]">
 
-                <div class="flex">
+                <div class="flex flex-col lg:flex-row">
                     <!-- Sidebar (Initiatives) -->
                     <div
-                        class="w-64 flex-shrink-0 border-r border-white/[0.04] p-4 flex flex-col gap-6 relative z-10 bg-[#111214]">
+                        class="w-full lg:w-64 flex-shrink-0 border-b lg:border-b-0 lg:border-r border-white/[0.04] p-4 flex flex-col gap-6 relative z-10 bg-[#111214]">
                         <h3 class="text-[13px] font-medium text-white/90 px-2 mt-1">Initiatives</h3>
 
                         <div class="flex flex-col">
@@ -1169,17 +1194,17 @@
     </section>
 
     <!-- Understand progress at scale Section -->
-    <section id="monitor" class="py-32 border-b border-white/[0.04] bg-[#08090a] scroll-mt-44 md:scroll-mt-52">
-        <div class="max-w-[1240px] mx-auto px-6">
+    <section id="monitor" class="py-20 md:py-32 border-b border-white/[0.04] bg-[#08090a] scroll-mt-24 md:scroll-mt-52">
+        <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
             <!-- Header layout -->
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-10 md:gap-12 mb-14 md:mb-16">
                 <!-- Title -->
-                <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white leading-[1.1] max-w-sm">
+                <h2 class="text-[2.15rem] sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-[1.1] max-w-sm">
                     Understand <br> progress at scale
                 </h2>
                 <!-- Description -->
                 <div class="max-w-md pt-2">
-                    <p class="text-[17px] text-zinc-300 font-light leading-relaxed mb-8">
+                    <p class="text-base sm:text-[17px] text-zinc-300 font-light leading-relaxed mb-6 md:mb-8">
                         Take the guesswork out of product development with project updates, analytics, and dashboards
                         that surface what needs your attention.
                     </p>
@@ -1334,14 +1359,14 @@
         </div>
     </section>
     <!-- Results Section -->
-    <section id="results" class="relative py-24 md:py-28 border-y border-white/[0.04] overflow-hidden">
+    <section id="results" class="relative py-20 md:py-28 border-y border-white/[0.04] overflow-hidden">
         <div
             class="absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(94,106,210,0.12),transparent_38%)] pointer-events-none">
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
             <div class="relative max-w-5xl mx-auto">
-                <h2 class="text-5xl md:text-6xl font-medium tracking-tight text-white">Client Results</h2>
+                <h2 class="text-[2.4rem] sm:text-5xl md:text-6xl font-medium tracking-tight text-white">Client Results</h2>
 
                 <div class="mt-14">
                     <div class="relative">
@@ -1420,7 +1445,7 @@
                 </div>
 
                 <a href="#customers"
-                    class="inline-flex items-center gap-2 mt-16 text-lg text-zinc-400 hover:text-white transition-colors">
+                    class="inline-flex items-center gap-2 mt-12 md:mt-16 text-base sm:text-lg text-zinc-400 hover:text-white transition-colors">
                     See client highlights
                     <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
                 </a>
@@ -1428,12 +1453,12 @@
         </div>
     </section>
     <!-- Footer -->
-    <footer class="border-t border-white/[0.08] bg-[#08090a] pt-16 pb-12">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-6 gap-8 mb-16">
+    <footer class="border-t border-white/[0.08] bg-[#08090a] pt-14 md:pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-8 mb-14 md:mb-16">
                 <div class="col-span-2">
-                    <a href="#top" class="text-white font-medium text-lg tracking-tighter flex items-center gap-2.5 mb-4">
-                        <img src="assets/logo/logo.png" alt="Codev Logo" class="h-9 w-9 object-contain brightness-0 invert opacity-90">
+                    <a href="#top" class="text-white font-medium text-base sm:text-lg tracking-tighter flex items-center gap-2.5 mb-4">
+                        <img src="assets/logo/logo.png" alt="Codev Logo" class="h-7 w-7 sm:h-9 sm:w-9 object-contain brightness-0 invert opacity-90">
                         Codev
                     </a>
                 </div>
@@ -1509,12 +1534,10 @@
 
     <!-- Typewriter Effect -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://unpkg.com/three@0.160.0/build/three.min.js" defer></script>
-
     <script src="assets/js/dropdown.js?v=20260308b" defer></script>
     <script src="assets/js/prompt.js?v=20260308b" defer></script>
-    <script src="assets/js/laser-flow.js?v=20260308u" defer></script>
-    <script src="assets/js/main.js?v=20260308b" defer></script>
+    <script src="assets/js/laser-flow.js?v=20260309video" defer></script>
+    <script src="assets/js/main.js?v=20260309b" defer></script>
 </body>
 
 </html>

@@ -1,430 +1,76 @@
 (function () {
-    const VERT = `
-precision highp float;
-attribute vec3 position;
-void main(){
-  gl_Position = vec4(position, 1.0);
-}
-`;
-
-    const FRAG = `
-#ifdef GL_ES
-#extension GL_OES_standard_derivatives : enable
-#endif
-precision highp float;
-precision mediump int;
-
-uniform float iTime;
-uniform vec3 iResolution;
-uniform vec4 iMouse;
-uniform float uWispDensity;
-uniform float uTiltScale;
-uniform float uFlowTime;
-uniform float uFogTime;
-uniform float uBeamXFrac;
-uniform float uBeamYFrac;
-uniform float uFlowSpeed;
-uniform float uVLenFactor;
-uniform float uHLenFactor;
-uniform float uFogIntensity;
-uniform float uFogScale;
-uniform float uWSpeed;
-uniform float uWIntensity;
-uniform float uFlowStrength;
-uniform float uDecay;
-uniform float uFalloffStart;
-uniform float uFogFallSpeed;
-uniform vec3 uColor;
-uniform float uFade;
-
-#define PI 3.14159265359
-#define TWO_PI 6.28318530718
-#define EPS 1e-6
-#define EDGE_SOFT (DT_LOCAL*4.0)
-#define DT_LOCAL 0.0038
-#define TAP_RADIUS 6
-#define R_H 150.0
-#define R_V 150.0
-#define FLARE_HEIGHT 16.0
-#define FLARE_AMOUNT 8.0
-#define FLARE_EXP 2.0
-#define TOP_FADE_START 0.1
-#define TOP_FADE_EXP 1.0
-#define FLOW_PERIOD 0.5
-#define FLOW_SHARPNESS 1.5
-#define W_BASE_X 1.5
-#define W_LAYER_GAP 0.25
-#define W_LANES 10
-#define W_SIDE_DECAY 0.5
-#define W_HALF 0.01
-#define W_AA 0.15
-#define W_CELL 20.0
-#define W_SEG_MIN 0.01
-#define W_SEG_MAX 0.55
-#define W_CURVE_AMOUNT 15.0
-#define W_CURVE_RANGE (FLARE_HEIGHT - 3.0)
-#define W_BOTTOM_EXP 10.0
-#define FOG_ON 1
-#define FOG_CONTRAST 1.2
-#define FOG_OCTAVES 5
-#define FOG_BOTTOM_BIAS 0.8
-#define FOG_TILT_SHAPE 1.5
-#define FOG_TILT_MAX_X 0.35
-#define FOG_BEAM_MIN 0.0
-#define FOG_BEAM_MAX 0.75
-#define FOG_MASK_GAMMA 0.5
-#define FOG_EXPAND_SHAPE 12.2
-#define FOG_EDGE_MIX 0.5
-#define HFOG_EDGE_START 0.20
-#define HFOG_EDGE_END 0.98
-#define HFOG_EDGE_GAMMA 1.4
-#define HFOG_Y_RADIUS 25.0
-#define HFOG_Y_SOFT 60.0
-#define EDGE_X0 0.22
-#define EDGE_X1 0.995
-#define EDGE_X_GAMMA 1.25
-#define EDGE_LUMA_T0 0.0
-#define EDGE_LUMA_T1 2.0
-#define DITHER_STRENGTH 1.0
-
-float g(float x){return x<=0.00031308?12.92*x:1.055*pow(x,1.0/2.4)-0.055;}
-float bs(vec2 p,vec2 q,float powr){
-    float d=distance(p,q),f=powr*uFalloffStart,r=(f*f)/(d*d+EPS);
-    return powr*min(1.0,r);
-}
-float bsa(vec2 p,vec2 q,float powr,vec2 s){
-    vec2 d=p-q; float dd=(d.x*d.x)/(s.x*s.x)+(d.y*d.y)/(s.y*s.y),f=powr*uFalloffStart,r=(f*f)/(dd+EPS);
-    return powr*min(1.0,r);
-}
-float tri01(float x){float f=fract(x);return 1.0-abs(f*2.0-1.0);}
-float tauWf(float t,float tmin,float tmax){float a=smoothstep(tmin,tmin+EDGE_SOFT,t),b=1.0-smoothstep(tmax-EDGE_SOFT,tmax,t);return max(0.0,a*b);}
-float h21(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+34.123);return fract(p.x*p.y);}
-float vnoise(vec2 p){
-    vec2 i=floor(p),f=fract(p);
-    float a=h21(i),b=h21(i+vec2(1,0)),c=h21(i+vec2(0,1)),d=h21(i+vec2(1,1));
-    vec2 u=f*f*(3.0-2.0*f);
-    return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
-}
-float fbm2(vec2 p){
-    float v=0.0,amp=0.6; mat2 m=mat2(0.86,0.5,-0.5,0.86);
-    for(int i=0;i<FOG_OCTAVES;++i){v+=amp*vnoise(p); p=m*p*2.03+17.1; amp*=0.52;}
-    return v;
-}
-float rGate(float x,float l){float a=smoothstep(0.0,W_AA,x),b=1.0-smoothstep(l,l+W_AA,x);return max(0.0,a*b);}
-float flareY(float y){float t=clamp(1.0-(clamp(y,0.0,FLARE_HEIGHT)/max(FLARE_HEIGHT,EPS)),0.0,1.0);return pow(t,FLARE_EXP);}
-
-float vWisps(vec2 uv,float topF){
-    float y=uv.y,yf=(y+uFlowTime*uWSpeed)/W_CELL;
-    float dRaw=clamp(uWispDensity,0.0,2.0),d=dRaw<=0.0?1.0:dRaw;
-    float lanesF=floor(float(W_LANES)*min(d,1.0)+0.5);
-    int lanes=int(max(1.0,lanesF));
-    float sp=min(d,1.0),ep=max(d-1.0,0.0);
-    float fm=flareY(max(y,0.0)),rm=clamp(1.0-(y/max(W_CURVE_RANGE,EPS)),0.0,1.0),cm=fm*rm;
-    const float G=0.05; float xS=1.0+(FLARE_AMOUNT*W_CURVE_AMOUNT*G)*cm;
-    float sPix=clamp(y/R_V,0.0,1.0),bGain=pow(1.0-sPix,W_BOTTOM_EXP),sum=0.0;
-    for(int s=0;s<2;++s){
-        float sgn=s==0?-1.0:1.0;
-        for(int i=0;i<W_LANES;++i){
-            if(i>=lanes) break;
-            float off=W_BASE_X+float(i)*W_LAYER_GAP,xc=sgn*(off*xS);
-            float dx=abs(uv.x-xc),lat=1.0-smoothstep(W_HALF,W_HALF+W_AA,dx),amp=exp(-off*W_SIDE_DECAY);
-            float seed=h21(vec2(off,sgn*17.0)),yf2=yf+seed*7.0,ci=floor(yf2),fy=fract(yf2);
-            float seg=mix(W_SEG_MIN,W_SEG_MAX,h21(vec2(ci,off*2.3)));
-            float spR=h21(vec2(ci,off+sgn*31.0)),seg1=rGate(fy,seg)*step(spR,sp);
-            if(ep>0.0){float spR2=h21(vec2(ci*3.1+7.0,off*5.3+sgn*13.0)); float f2=fract(fy+0.5); seg1+=rGate(f2,seg*0.9)*step(spR2,ep);}
-            sum+=amp*lat*seg1;
-        }
-    }
-    float span=smoothstep(-3.0,0.0,y)*(1.0-smoothstep(R_V-6.0,R_V,y));
-    return uWIntensity*sum*topF*bGain*span;
-}
-
-void mainImage(out vec4 fc,in vec2 frag){
-    vec2 C=iResolution.xy*.5; float invW=1.0/max(C.x,1.0);
-    float sc=512.0/iResolution.x*.4;
-    vec2 uv=(frag-C)*sc,off=vec2(uBeamXFrac*iResolution.x*sc,uBeamYFrac*iResolution.y*sc);
-    vec2 uvc = uv - off;
-    float a=0.0,b=0.0;
-    float basePhase=1.5*PI+uDecay*.5; float tauMin=basePhase-uDecay; float tauMax=basePhase;
-    float cx=clamp(uvc.x/(R_H*uHLenFactor),-1.0,1.0),tH=clamp(TWO_PI-acos(cx),tauMin,tauMax);
-    for(int k=-TAP_RADIUS;k<=TAP_RADIUS;++k){
-        float tu=tH+float(k)*DT_LOCAL,wt=tauWf(tu,tauMin,tauMax); if(wt<=0.0) continue;
-        float spd=max(abs(sin(tu)),0.02),u=clamp((basePhase-tu)/max(uDecay,EPS),0.0,1.0),env=pow(1.0-abs(u*2.0-1.0),0.8);
-        vec2 p=vec2((R_H*uHLenFactor)*cos(tu),0.0);
-        a+=wt*bs(uvc,p,env*spd);
-    }
-    float yPix=uvc.y,cy=clamp(-yPix/(R_V*uVLenFactor),-1.0,1.0),tV=clamp(TWO_PI-acos(cy),tauMin,tauMax);
-    for(int k=-TAP_RADIUS;k<=TAP_RADIUS;++k){
-        float tu=tV+float(k)*DT_LOCAL,wt=tauWf(tu,tauMin,tauMax); if(wt<=0.0) continue;
-        float yb=(-R_V)*cos(tu),s=clamp(yb/R_V,0.0,1.0),spd=max(abs(sin(tu)),0.02);
-        float env=pow(1.0-s,0.6)*spd;
-        float cap=1.0-smoothstep(TOP_FADE_START,1.0,s); cap=pow(cap,TOP_FADE_EXP); env*=cap;
-        float ph=s/max(FLOW_PERIOD,EPS)+uFlowTime*uFlowSpeed;
-        float fl=pow(tri01(ph),FLOW_SHARPNESS);
-        env*=mix(1.0-uFlowStrength,1.0,fl);
-        float yp=(-R_V*uVLenFactor)*cos(tu),m=pow(smoothstep(FLARE_HEIGHT,0.0,yp),FLARE_EXP),wx=1.0+FLARE_AMOUNT*m;
-        vec2 sig=vec2(wx,1.0),p=vec2(0.0,yp);
-        float mask=step(0.0,yp);
-        b+=wt*bsa(uvc,p,mask*env,sig);
-    }
-    float sPix=clamp(yPix/R_V,0.0,1.0),topA=pow(1.0-smoothstep(TOP_FADE_START,1.0,sPix),TOP_FADE_EXP);
-    float L=a+b*topA;
-    float w=vWisps(vec2(uvc.x,yPix),topA);
-    float fog=0.0;
-#if FOG_ON
-    vec2 fuv=uvc*uFogScale;
-    float nx=0.0;
-    float ax = abs(nx);
-    float stMag = mix(ax, pow(ax, FOG_TILT_SHAPE), 0.35);
-    float st = sign(nx) * stMag * uTiltScale;
-    st = clamp(st, -FOG_TILT_MAX_X, FOG_TILT_MAX_X);
-    vec2 dir=normalize(vec2(st,1.0));
-    fuv+=uFogTime*uFogFallSpeed*dir;
-    vec2 prp=vec2(-dir.y,dir.x);
-    fuv+=prp*(0.08*sin(dot(uvc,prp)*0.08+uFogTime*0.9));
-    float n=fbm2(fuv+vec2(fbm2(fuv+vec2(7.3,2.1)),fbm2(fuv+vec2(-3.7,5.9)))*0.6);
-    n=pow(clamp(n,0.0,1.0),FOG_CONTRAST);
-    float pixW = 1.0 / max(iResolution.y, 1.0);
-#ifdef GL_OES_standard_derivatives
-    float wL = max(fwidth(L), pixW);
-#else
-    float wL = pixW;
-#endif
-    float m0=pow(smoothstep(FOG_BEAM_MIN - wL, FOG_BEAM_MAX + wL, L),FOG_MASK_GAMMA);
-    float bm=1.0-pow(1.0-m0,FOG_EXPAND_SHAPE); bm=mix(bm*m0,bm,FOG_EDGE_MIX);
-    float yP=1.0-smoothstep(HFOG_Y_RADIUS,HFOG_Y_RADIUS+HFOG_Y_SOFT,abs(yPix));
-    float nxF=abs((frag.x-C.x)*invW),hE=1.0-smoothstep(HFOG_EDGE_START,HFOG_EDGE_END,nxF); hE=pow(clamp(hE,0.0,1.0),HFOG_EDGE_GAMMA);
-    float hW=mix(1.0,hE,clamp(yP,0.0,1.0));
-    float bBias=mix(1.0,1.0-sPix,FOG_BOTTOM_BIAS);
-    float browserFogIntensity = uFogIntensity * 1.6;
-    float radialFade = 1.0 - smoothstep(0.0, 0.7, length(uvc) / 120.0);
-    fog = n * browserFogIntensity * bBias * bm * hW * radialFade;
-#endif
-    float LF=L+fog;
-    float dith=(h21(frag)-0.5)*(DITHER_STRENGTH/255.0);
-    float tone=g(LF+w);
-    vec3 col=tone*uColor+dith;
-    float alpha=clamp(g(L+w*0.6)+dith*0.6,0.0,1.0);
-    float nxE=abs((frag.x-C.x)*invW),xF=pow(clamp(1.0-smoothstep(EDGE_X0,EDGE_X1,nxE),0.0,1.0),EDGE_X_GAMMA);
-    float scene=LF+max(0.0,w)*0.5,hi=smoothstep(EDGE_LUMA_T0,EDGE_LUMA_T1,scene);
-    float eM=mix(xF,1.0,hi);
-    col*=eM; alpha*=eM;
-    col*=uFade; alpha*=uFade;
-    fc=vec4(col,alpha);
-}
-
-void main(){
-  vec4 fc;
-  mainImage(fc, gl_FragCoord.xy);
-  gl_FragColor = fc;
-}
-`;
-
     class LaserFlowBridge {
         constructor(container) {
             this.container = container;
-            this.shell = container.closest('.laser-flow-bridge-shell');
+            this.shell = container ? container.closest('.laser-flow-bridge-shell') : null;
             this.target = document.getElementById('project-starter-playground');
             this.promptWindow = this.target ? this.target.querySelector('.prompt-container') : null;
             this.revealZone = document.getElementById('laser-reveal-zone');
             this.revealLayer = document.getElementById('laser-flow-reveal');
-            this.THREE = window.THREE;
-            this.renderer = null;
-            this.uniforms = null;
-            this.frameId = null;
-            this.resizeFrame = null;
-            this.active = true;
-            this.hasFaded = false;
-            this.fade = 0;
-            this.clock = null;
-            this.previousTime = 0;
-            this.shellCenter = 0;
-            this.revealCenter = 0;
+            this.video = container ? container.querySelector('video') : null;
             this.pointerFineQuery = window.matchMedia('(pointer: fine)');
             this.reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            this.resizeFrame = null;
             this.handleResize = this.handleResize.bind(this);
-            this.handleVisibility = this.handleVisibility.bind(this);
             this.handlePointerMove = this.handlePointerMove.bind(this);
             this.resetReveal = this.resetReveal.bind(this);
             this.handlePreferenceChange = this.handlePreferenceChange.bind(this);
-            this.animate = this.animate.bind(this);
         }
 
         init() {
-            if (!this.container || !this.shell || !this.target || !this.THREE || this.container.dataset.laserReady === 'true') {
+            if (!this.container || !this.shell || !this.target || this.container.dataset.laserReady === 'true') {
                 return;
             }
 
             this.container.dataset.laserReady = 'true';
-            this.buildScene();
             this.bindEvents();
             this.handleResize();
-            this.frameId = window.requestAnimationFrame(this.animate);
-        }
-
-        buildScene() {
-            const THREE = this.THREE;
-            const renderer = new THREE.WebGLRenderer({
-                antialias: false,
-                alpha: true,
-                depth: false,
-                stencil: false,
-                powerPreference: 'high-performance',
-                premultipliedAlpha: false,
-                preserveDrawingBuffer: false,
-                failIfMajorPerformanceCaveat: false,
-                logarithmicDepthBuffer: false
-            });
-
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
-            if ('outputColorSpace' in renderer && THREE.SRGBColorSpace) {
-                renderer.outputColorSpace = THREE.SRGBColorSpace;
-            }
-            renderer.setClearColor(0x000000, 0);
-            renderer.domElement.style.width = '100%';
-            renderer.domElement.style.height = '100%';
-            renderer.domElement.style.display = 'block';
-            this.container.appendChild(renderer.domElement);
-            this.renderer = renderer;
-
-            const scene = new THREE.Scene();
-            const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-            const geometry = new THREE.BufferGeometry();
-            geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array([-1, -1, 0, 3, -1, 0, -1, 3, 0]), 3));
-
-            this.uniforms = {
-                iTime: { value: 0 },
-                iResolution: { value: new THREE.Vector3(1, 1, 1) },
-                iMouse: { value: new THREE.Vector4(0, 0, 0, 0) },
-                uWispDensity: { value: 1.0 },
-                uTiltScale: { value: 0.0 },
-                uFlowTime: { value: 0 },
-                uFogTime: { value: 0 },
-                uBeamXFrac: { value: 0.0 },
-                uBeamYFrac: { value: -0.494 },
-                uFlowSpeed: { value: 0.35 },
-                uVLenFactor: { value: 6.9 },
-                uHLenFactor: { value: 2.34 },
-                uFogIntensity: { value: 2.55 },
-                uFogScale: { value: 0.3 },
-                uWSpeed: { value: 15.0 },
-                uWIntensity: { value: 20.6 },
-                uFlowStrength: { value: 0.48 },
-                uDecay: { value: 1.1 },
-                uFalloffStart: { value: 1.2 },
-                uFogFallSpeed: { value: 0.6 },
-                uColor: { value: new THREE.Vector3(0.647, 0.682, 1.0) },
-                uFade: { value: 0 }
-            };
-
-            const material = new THREE.RawShaderMaterial({
-                vertexShader: VERT,
-                fragmentShader: FRAG,
-                uniforms: this.uniforms,
-                transparent: true,
-                depthTest: false,
-                depthWrite: false,
-                blending: THREE.NormalBlending
-            });
-
-            const mesh = new THREE.Mesh(geometry, material);
-            mesh.frustumCulled = false;
-            scene.add(mesh);
-
-            this.scene = scene;
-            this.camera = camera;
-            this.geometry = geometry;
-            this.material = material;
-            this.clock = new THREE.Clock();
+            this.playVideo();
+            this.resetReveal();
         }
 
         bindEvents() {
             window.addEventListener('resize', this.handleResize);
-            document.addEventListener('visibilitychange', this.handleVisibility);
-            this.pointerFineQuery.addEventListener('change', this.handlePreferenceChange);
-            this.reduceMotionQuery.addEventListener('change', this.handlePreferenceChange);
             document.addEventListener('pointermove', this.handlePointerMove, { passive: true });
-            document.addEventListener('mousemove', this.handlePointerMove, { passive: true });
-            document.addEventListener('pointerdown', this.handlePointerMove, { passive: true });
-            this.shell.addEventListener('pointermove', this.handlePointerMove, { passive: true });
-            this.shell.addEventListener('mousemove', this.handlePointerMove, { passive: true });
-            this.shell.addEventListener('pointerdown', this.handlePointerMove, { passive: true });
-            this.shell.addEventListener('pointerenter', this.handlePointerMove, { passive: true });
-            this.shell.addEventListener('mouseenter', this.handlePointerMove, { passive: true });
-            this.shell.addEventListener('pointerleave', this.resetReveal, { passive: true });
-            this.shell.addEventListener('mouseleave', this.resetReveal, { passive: true });
-            this.handlePreferenceChange();
+            document.addEventListener('pointerleave', this.resetReveal);
+            document.addEventListener('visibilitychange', () => {
+                this.playVideo();
+            });
+
+            if (typeof this.pointerFineQuery.addEventListener === 'function') {
+                this.pointerFineQuery.addEventListener('change', this.handlePreferenceChange);
+                this.reduceMotionQuery.addEventListener('change', this.handlePreferenceChange);
+            } else if (typeof this.pointerFineQuery.addListener === 'function') {
+                this.pointerFineQuery.addListener(this.handlePreferenceChange);
+                this.reduceMotionQuery.addListener(this.handlePreferenceChange);
+            }
         }
 
-        updateAlignment() {
-            const shellRect = this.shell.getBoundingClientRect();
-            const targetRect = (this.promptWindow || this.target).getBoundingClientRect();
-            const center = targetRect.left + (targetRect.width / 2) - shellRect.left;
-            this.shell.style.setProperty('--laser-bridge-center', `${center}px`);
-            this.shellCenter = center;
+        playVideo() {
+            if (!this.video) {
+                return;
+            }
+
+            const playPromise = this.video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => { });
+            }
         }
 
         handlePreferenceChange() {
-            if (!this.revealLayer) {
-                return;
-            }
-
-            const enabled = this.pointerFineQuery.matches && !this.reduceMotionQuery.matches && window.innerWidth > 767;
-            this.revealLayer.dataset.enabled = enabled ? 'true' : 'false';
-
-            if (!enabled) {
-                this.resetReveal();
-            }
+            this.resetReveal();
         }
 
-        handlePointerMove(event) {
-            if (!this.revealLayer || !this.revealZone || this.revealLayer.dataset.enabled !== 'true') {
+        updateAlignment() {
+            const alignmentTarget = this.promptWindow || this.target;
+            if (!alignmentTarget) {
                 return;
             }
 
-            const zoneRect = this.revealZone.getBoundingClientRect();
-            const clientX = typeof event.clientX === 'number' ? event.clientX : 0;
-            const clientY = typeof event.clientY === 'number' ? event.clientY : 0;
-
-            if (!clientX && !clientY) {
-                return;
-            }
-
-            const insideRevealZone = clientX >= zoneRect.left - 40
-                && clientX <= zoneRect.right + 40
-                && clientY >= zoneRect.top - 24
-                && clientY <= zoneRect.bottom + 24;
-
-            if (!insideRevealZone) {
-                this.resetReveal();
-                return;
-            }
-
-            const zoneX = clientX - zoneRect.left;
-            const zoneY = clientY - zoneRect.top;
-            const withinVerticalBand = zoneY >= -24
-                && zoneY <= zoneRect.height + 24;
-
-            if (!withinVerticalBand) {
-                this.resetReveal();
-                return;
-            }
-
-            const clampedX = Math.max(-30, Math.min(zoneRect.width + 30, zoneX));
-            const clampedY = Math.max(-30, Math.min(zoneRect.height + 30, zoneY));
-            this.revealLayer.style.setProperty('--mx', `${clampedX}px`);
-            this.revealLayer.style.setProperty('--my', `${clampedY}px`);
-            this.revealLayer.dataset.active = 'true';
-        }
-
-        resetReveal() {
-            if (!this.revealLayer) {
-                return;
-            }
-
-            this.revealLayer.style.setProperty('--mx', '-9999px');
-            this.revealLayer.style.setProperty('--my', '-9999px');
-            this.revealLayer.dataset.active = 'false';
+            const shellRect = this.shell.getBoundingClientRect();
+            const targetRect = alignmentTarget.getBoundingClientRect();
+            const center = targetRect.left + (targetRect.width / 2) - shellRect.left;
+            this.shell.style.setProperty('--laser-bridge-center', `${center}px`);
         }
 
         handleResize() {
@@ -433,80 +79,52 @@ void main(){
             }
 
             this.resizeFrame = window.requestAnimationFrame(() => {
-                if (!this.renderer || !this.uniforms) {
-                    return;
-                }
-
                 this.updateAlignment();
-                const width = Math.max(this.container.clientWidth, 1);
-                const height = Math.max(this.container.clientHeight, 1);
-                const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.6);
-                this.renderer.setPixelRatio(pixelRatio);
-                this.renderer.setSize(width, height, false);
-                this.uniforms.iResolution.value.set(width * pixelRatio, height * pixelRatio, pixelRatio);
-
-                if (window.innerWidth <= 767) {
-                    this.uniforms.uVLenFactor.value = 4.2;
-                    this.uniforms.uHLenFactor.value = 1.56;
-                    this.uniforms.uFogIntensity.value = 1.08;
-                    this.uniforms.uWIntensity.value = 11.6;
-                    this.uniforms.uFlowStrength.value = 0.34;
-                    this.uniforms.uBeamYFrac.value = -0.24;
-                } else if (window.innerWidth <= 1023) {
-                    this.uniforms.uVLenFactor.value = 5.4;
-                    this.uniforms.uHLenFactor.value = 1.95;
-                    this.uniforms.uFogIntensity.value = 1.76;
-                    this.uniforms.uWIntensity.value = 16.8;
-                    this.uniforms.uFlowStrength.value = 0.4;
-                    this.uniforms.uBeamYFrac.value = -0.32;
-                } else {
-                    this.uniforms.uVLenFactor.value = 6.9;
-                    this.uniforms.uHLenFactor.value = 2.34;
-                    this.uniforms.uFogIntensity.value = 2.55;
-                    this.uniforms.uWIntensity.value = 20.6;
-                    this.uniforms.uFlowStrength.value = 0.48;
-                    this.uniforms.uBeamYFrac.value = -0.494;
-                }
+                this.resetReveal();
             });
         }
 
-        handleVisibility() {
-            this.active = document.visibilityState !== 'hidden';
-
-            if (this.active && !this.frameId) {
-                this.frameId = window.requestAnimationFrame(this.animate);
-            }
-        }
-
-        animate() {
-            this.frameId = window.requestAnimationFrame(this.animate);
-
-            if (!this.active || !this.renderer || !this.uniforms) {
+        handlePointerMove(event) {
+            if (!this.revealLayer || !this.revealZone) {
                 return;
             }
 
-            const time = this.clock.getElapsedTime();
-            const delta = Math.max(0.001, Math.min(0.033, time - this.previousTime));
-            this.previousTime = time;
-            this.uniforms.iTime.value = time;
-            this.uniforms.uFlowTime.value += delta;
-            this.uniforms.uFogTime.value += delta;
-
-            if (!this.hasFaded) {
-                this.fade = Math.min(1, this.fade + (delta / 1.15));
-                this.uniforms.uFade.value = this.fade;
-                if (this.fade >= 1) {
-                    this.hasFaded = true;
-                }
+            if (!this.pointerFineQuery.matches || this.reduceMotionQuery.matches || window.innerWidth <= 767) {
+                this.resetReveal();
+                return;
             }
 
-            this.renderer.render(this.scene, this.camera);
+            const zoneRect = this.revealZone.getBoundingClientRect();
+            const withinZone =
+                event.clientX >= zoneRect.left &&
+                event.clientX <= zoneRect.right &&
+                event.clientY >= zoneRect.top &&
+                event.clientY <= zoneRect.bottom;
+
+            if (!withinZone) {
+                this.resetReveal();
+                return;
+            }
+
+            this.revealLayer.dataset.active = 'true';
+            this.revealLayer.style.setProperty('--mx', `${event.clientX - zoneRect.left}px`);
+            this.revealLayer.style.setProperty('--my', `${event.clientY - zoneRect.top}px`);
+        }
+
+        resetReveal() {
+            if (!this.revealLayer) {
+                return;
+            }
+
+            this.revealLayer.dataset.active = 'false';
+            this.revealLayer.style.setProperty('--mx', '-9999px');
+            this.revealLayer.style.setProperty('--my', '-9999px');
         }
     }
 
-    function initLaserFlowBridge() {
+    window.initLaserFlowBridge = function initLaserFlowBridge() {
         const container = document.getElementById('laser-flow-bridge');
-        if (!container || !window.THREE) {
+        if (!container) {
             return null;
         }
 
@@ -514,11 +132,9 @@ void main(){
             return window.__laserFlowBridge;
         }
 
-        const instance = new LaserFlowBridge(container);
-        instance.init();
-        window.__laserFlowBridge = instance;
-        return instance;
-    }
-
-    window.initLaserFlowBridge = initLaserFlowBridge;
-}());
+        const bridge = new LaserFlowBridge(container);
+        bridge.init();
+        window.__laserFlowBridge = bridge;
+        return bridge;
+    };
+})();
