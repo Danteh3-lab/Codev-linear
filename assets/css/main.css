@@ -1552,7 +1552,7 @@ body.mobile-nav-open {
 @media (max-width: 767px) {
     .laser-flow-bridge-shell {
         --laser-bridge-width: min(34rem, 126vw);
-        --laser-bridge-top: -29.82rem;
+        --laser-bridge-top: -22.4rem;
         --laser-bridge-height: 30rem;
     }
 
