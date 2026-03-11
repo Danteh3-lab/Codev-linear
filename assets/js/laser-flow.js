@@ -51,18 +51,6 @@
                 return;
             }
 
-            this.video.muted = true;
-            this.video.defaultMuted = true;
-            this.video.autoplay = true;
-            this.video.loop = true;
-            this.video.controls = false;
-            this.video.playsInline = true;
-            this.video.setAttribute('playsinline', 'true');
-            this.video.setAttribute('webkit-playsinline', 'true');
-            this.video.setAttribute('x-webkit-airplay', 'deny');
-            this.video.setAttribute('x5-playsinline', 'true');
-            this.video.setAttribute('x5-video-player-type', 'h5');
-
             const playPromise = this.video.play();
             if (playPromise && typeof playPromise.catch === 'function') {
                 playPromise.catch(() => { });
