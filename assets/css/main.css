@@ -87,6 +87,10 @@ body.mobile-nav-open {
     pointer-events: none;
 }
 
+.laser-flow-bridge-canvas--mobile {
+    display: none;
+}
+
 .laser-flow-bridge-media {
     width: 100% !important;
     height: 100% !important;
@@ -1561,7 +1565,7 @@ body.mobile-nav-open {
     }
 
     .laser-flow-bridge {
-        z-index: 12;
+        z-index: 8;
         opacity: 1;
         -webkit-mask-image: linear-gradient(to bottom,
                 rgba(0, 0, 0, 0) 0%,
@@ -1577,6 +1581,14 @@ body.mobile-nav-open {
                 rgba(0, 0, 0, 1) 76%,
                 rgba(0, 0, 0, 0.76) 88%,
                 rgba(0, 0, 0, 0) 100%);
+    }
+
+    .laser-flow-bridge-canvas--video {
+        display: none;
+    }
+
+    .laser-flow-bridge-canvas--mobile {
+        display: block;
     }
 
     .laser-flow-bridge-media {
