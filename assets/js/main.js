@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const initLaserFlowBridge = window.initLaserFlowBridge;
     const PromptCtor = window.Prompt;
     const body = document.body;
+    const serviceLabel = document.getElementById('mobile-service-label');
+    const phaseLabel = document.getElementById('mobile-phase-label');
+    const serviceIcons = {
+        'website build': 'solar:laptop-minimalistic-linear',
+        'web app': 'solar:smartphone-linear',
+        'mobile app': 'solar:cloud-linear',
+        'internal business tool': 'solar:shield-check-linear'
+    };
 
     const initMobileNav = () => {
         const toggle = document.getElementById('mobile-nav-toggle');
@@ -133,9 +141,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const promptSystem = new PromptCtor('#project-starter-playground', { autoplay: true });
+    const syncMobileSheet = (value) => {
+        if (!value) {
+            return;
+        }
+
+        const normalized = value.toLowerCase();
+        if (serviceLabel) {
+            serviceLabel.textContent = value;
+        }
+
+        const serviceIcon = document.querySelector('.mobile-chat-sheet__icon iconify-icon');
+        if (serviceIcon && serviceIcons[normalized]) {
+            serviceIcon.setAttribute('icon', serviceIcons[normalized]);
+        }
+
+        if (phaseLabel) {
+            phaseLabel.textContent = normalized === 'internal business tool' ? 'Ops Workflow Ready' : 'Discovery Ready';
+        }
+    };
+
+    syncMobileSheet('Website Build');
+
+    const playground = document.getElementById('project-starter-playground');
+    if (playground) {
+        playground.addEventListener('prompt:model-change', (event) => {
+            const model = event.detail && event.detail.model ? event.detail.model : '';
+            if (!model) {
+                return;
+            }
+
+            syncMobileSheet(model.replace(/\b\w/g, (character) => character.toUpperCase()));
+        });
+    }
+
     new DropdownCtor('#service-dropdown', (value) => {
         promptSystem.stopAutoplay();
         promptSystem.setAIModel(value);
+        syncMobileSheet(value);
     });
 
     const form = document.getElementById('prompt-form');

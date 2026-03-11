@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=20260311hybrid5">
+    <link rel="stylesheet" href="assets/css/main.css?v=20260311mobilechat1">
 </head>
 
 <body id="top" class="text-zinc-400 antialiased selection:bg-[#5E6AD2] selection:text-white">
@@ -220,6 +220,29 @@
                                 <!-- Intake Body -->
                                 <div id="project-starter-playground"
                                     class="flex-1 flex flex-col p-4 sm:p-6 md:p-8 relative overflow-hidden">
+                                    <div class="mobile-chat-sheet md:hidden">
+                                        <div class="mobile-chat-sheet__header">
+                                            <div class="mobile-chat-sheet__eyebrow">Current build</div>
+                                            <div class="mobile-chat-sheet__service">
+                                                <span class="mobile-chat-sheet__icon">
+                                                    <iconify-icon icon="solar:laptop-minimalistic-linear" width="14"
+                                                        class="text-[#5E6AD2]"></iconify-icon>
+                                                </span>
+                                                <span id="mobile-service-label">Website Build</span>
+                                                <iconify-icon icon="solar:alt-arrow-down-linear" width="12"
+                                                    class="mobile-chat-sheet__chevron"></iconify-icon>
+                                            </div>
+                                        </div>
+                                        <div class="mobile-chat-sheet__meta">
+                                            <div class="mobile-chat-sheet__status">
+                                                <iconify-icon icon="solar:bolt-circle-linear" width="13"
+                                                    class="text-[#5E6AD2]"></iconify-icon>
+                                                <span id="mobile-phase-label">Discovery Ready</span>
+                                            </div>
+                                            <div class="mobile-chat-sheet__detail">Kickoff in 3-5 business days</div>
+                                        </div>
+                                    </div>
+
                                     <!-- Background Logo (Interactive Request) -->
                                     <div
                                         class="absolute top-[20%] left-1/2 -translate-x-1/2 w-[140px] h-[140px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] pointer-events-none z-0">
@@ -231,95 +254,102 @@
 
 
                                     <!-- Prompt Container (Scrollable Chat Area) -->
-                                    <div
-                                        class="prompt-container flex-1 w-full flex flex-col relative z-10 overflow-y-auto scrollbar-hide">
-
-                                        <!-- Initial Content (Will be cleared on interaction) -->
+                                    <div class="prompt-stream-shell">
                                         <div
-                                            class="flex flex-col items-center pt-1 sm:pt-0 justify-start text-center max-w-md mx-auto space-y-2 sm:space-y-2.5">
-                                            <h3 class="text-xl sm:text-2xl font-medium text-white tracking-tight">Scope Your
-                                                Build</h3>
+                                            class="prompt-container flex-1 w-full flex flex-col relative z-10 overflow-y-auto scrollbar-hide">
 
-                                            <!-- Typed.js Text -->
-                                            <div class="h-10 sm:h-12 flex items-center justify-center">
-                                                <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed min-h-[40px] sm:min-h-[48px]">
-                                                    <span id="prompts-sample"></span>
-                                                </p>
-                                            </div>
-
-                                            <!-- Quick tags -->
+                                            <!-- Initial Content (Will be cleared on interaction) -->
                                             <div
-                                                class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-2 opacity-60">
-                                                <span
-                                                    class="text-[10px] text-zinc-600 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-colors">Business
-                                                    Website</span>
-                                                <span
-                                                    class="text-[10px] text-zinc-600 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-colors">Customer
-                                                    App</span>
-                                                <span
-                                                    class="text-[10px] text-zinc-600 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-colors">Internal
-                                                    Business Tool</span>
+                                                class="prompt-initial-state flex flex-col items-center pt-1 sm:pt-0 justify-start text-center max-w-md mx-auto space-y-2 sm:space-y-2.5">
+                                                <h3 class="prompt-initial-title text-xl sm:text-2xl font-medium text-white tracking-tight">Scope Your
+                                                    Build</h3>
+
+                                                <p class="mobile-chat-intro md:hidden">Drop the brief. We will shape the scope
+                                                    into a realistic first release.</p>
+
+                                                <!-- Typed.js Text -->
+                                                <div class="prompt-initial-typed h-10 sm:h-12 flex items-center justify-center">
+                                                    <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed min-h-[40px] sm:min-h-[48px]">
+                                                        <span id="prompts-sample"></span>
+                                                    </p>
+                                                </div>
+
+                                                <!-- Quick tags -->
+                                                <div
+                                                    class="prompt-initial-tags flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-2 opacity-60">
+                                                    <span
+                                                        class="text-[10px] text-zinc-600 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-colors">Business
+                                                        Website</span>
+                                                    <span
+                                                        class="text-[10px] text-zinc-600 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-colors">Customer
+                                                        App</span>
+                                                    <span
+                                                        class="text-[10px] text-zinc-600 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] cursor-pointer transition-colors">Internal
+                                                        Business Tool</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Interactive Form (Fixed at bottom) -->
-                                    <form id="prompt-form"
-                                        class="mt-4 relative z-20 w-full bg-white/[0.02] border border-white/[0.08] rounded-xl p-2.5 sm:p-2 sm:pl-3 flex flex-wrap sm:flex-nowrap items-center gap-2.5 sm:gap-3 focus-within:border-[#5E6AD2]/40 transition-colors shadow-lg shadow-black/20">
+                                    <div class="prompt-composer-shell">
+                                        <form id="prompt-form"
+                                            class="mt-4 relative z-20 w-full bg-white/[0.02] border border-white/[0.08] rounded-xl p-2.5 sm:p-2 sm:pl-3 flex flex-wrap sm:flex-nowrap items-center gap-2.5 sm:gap-3 focus-within:border-[#5E6AD2]/40 transition-colors shadow-lg shadow-black/20">
 
-                                        <!-- Dropdown -->
-                                        <div class="dropdown relative w-full sm:w-auto sm:min-w-[120px]" id="service-dropdown">
-                                            <input type="hidden" class="dropdown-input" value="Website Build">
-                                            <button type="button"
-                                                class="dropdown-toggle text-xs font-medium text-zinc-300 hover:text-white transition-colors bg-white/[0.03] hover:bg-white/[0.06] py-1.5 px-2.5 rounded-lg border border-white/5">
-                                                <span class="dropdown-select-icon flex items-center">
-                                                    <iconify-icon icon="solar:laptop-minimalistic-linear" width="14"
-                                                        class="text-[#5E6AD2]"></iconify-icon>
-                                                </span>
-                                                <span class="dropdown-select-text">Website Build</span>
-                                                <iconify-icon icon="solar:alt-arrow-down-linear" width="10"
-                                                    class="ml-auto opacity-50"></iconify-icon>
+                                            <!-- Dropdown -->
+                                            <div class="dropdown relative w-full sm:w-auto sm:min-w-[120px]" id="service-dropdown">
+                                                <input type="hidden" class="dropdown-input" value="Website Build">
+                                                <button type="button"
+                                                    class="dropdown-toggle text-xs font-medium text-zinc-300 hover:text-white transition-colors bg-white/[0.03] hover:bg-white/[0.06] py-1.5 px-2.5 rounded-lg border border-white/5">
+                                                    <span class="dropdown-select-icon flex items-center">
+                                                        <iconify-icon icon="solar:laptop-minimalistic-linear" width="14"
+                                                            class="text-[#5E6AD2]"></iconify-icon>
+                                                    </span>
+                                                    <span class="dropdown-select-text">Website Build</span>
+                                                    <iconify-icon icon="solar:alt-arrow-down-linear" width="10"
+                                                        class="ml-auto opacity-50"></iconify-icon>
+                                                </button>
+
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <span class="dropdown-menu-icon flex items-center"><iconify-icon
+                                                                icon="solar:laptop-minimalistic-linear" width="14"
+                                                                class="text-[#5E6AD2]"></iconify-icon></span>
+                                                        <span class="dropdown-text">Website Build</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="dropdown-menu-icon flex items-center"><iconify-icon
+                                                                icon="solar:smartphone-linear" width="14"
+                                                                class="text-emerald-500"></iconify-icon></span>
+                                                        <span class="dropdown-text">Web App</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="dropdown-menu-icon flex items-center"><iconify-icon
+                                                                icon="solar:cloud-linear" width="14"
+                                                                class="text-sky-500"></iconify-icon></span>
+                                                        <span class="dropdown-text">Mobile App</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="dropdown-menu-icon flex items-center"><iconify-icon
+                                                                icon="solar:shield-check-linear" width="14"
+                                                                class="text-amber-500"></iconify-icon></span>
+                                                        <span class="dropdown-text">Internal Business Tool</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="hidden sm:block h-6 w-px bg-white/5"></div>
+
+                                            <input type="text" name="prompt" placeholder="Describe what you need built..."
+                                                class="order-3 sm:order-none w-full sm:w-auto min-w-0 bg-transparent border-none outline-none text-white text-sm flex-1 placeholder:text-zinc-600 h-full py-1">
+
+                                            <button type="submit"
+                                                class="ml-auto sm:ml-0 bg-[#EBEBED] hover:bg-white text-black text-xs font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                                                Ship it
+                                                <iconify-icon icon="solar:arrow-right-linear" width="12"></iconify-icon>
                                             </button>
-
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <span class="dropdown-menu-icon flex items-center"><iconify-icon
-                                                            icon="solar:laptop-minimalistic-linear" width="14"
-                                                            class="text-[#5E6AD2]"></iconify-icon></span>
-                                                    <span class="dropdown-text">Website Build</span>
-                                                </li>
-                                                <li>
-                                                    <span class="dropdown-menu-icon flex items-center"><iconify-icon
-                                                            icon="solar:smartphone-linear" width="14"
-                                                            class="text-emerald-500"></iconify-icon></span>
-                                                    <span class="dropdown-text">Web App</span>
-                                                </li>
-                                                <li>
-                                                    <span class="dropdown-menu-icon flex items-center"><iconify-icon
-                                                            icon="solar:cloud-linear" width="14"
-                                                            class="text-sky-500"></iconify-icon></span>
-                                                    <span class="dropdown-text">Mobile App</span>
-                                                </li>
-                                                <li>
-                                                    <span class="dropdown-menu-icon flex items-center"><iconify-icon
-                                                            icon="solar:shield-check-linear" width="14"
-                                                            class="text-amber-500"></iconify-icon></span>
-                                                    <span class="dropdown-text">Internal Business Tool</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="hidden sm:block h-6 w-px bg-white/5"></div>
-
-                                        <input type="text" name="prompt" placeholder="Describe what you need built..."
-                                            class="order-3 sm:order-none w-full sm:w-auto min-w-0 bg-transparent border-none outline-none text-white text-sm flex-1 placeholder:text-zinc-600 h-full py-1">
-
-                                        <button type="submit"
-                                            class="ml-auto sm:ml-0 bg-[#EBEBED] hover:bg-white text-black text-xs font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5 whitespace-nowrap shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                                            Ship it
-                                            <iconify-icon icon="solar:arrow-right-linear" width="12"></iconify-icon>
-                                        </button>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
 
@@ -1538,10 +1568,10 @@
     <!-- Typewriter Effect -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="assets/js/dropdown.js?v=20260308b" defer></script>
-    <script src="assets/js/prompt.js?v=20260308b" defer></script>
+    <script src="assets/js/prompt.js?v=20260311mobilechat1" defer></script>
     <script src="https://unpkg.com/three@0.160.0/build/three.min.js" defer></script>
     <script src="assets/js/laser-flow.js?v=20260311hybrid1" defer></script>
-    <script src="assets/js/main.js?v=20260311hybrid1" defer></script>
+    <script src="assets/js/main.js?v=20260311mobilechat1" defer></script>
 </body>
 
 </html>

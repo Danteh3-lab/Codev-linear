@@ -56,6 +56,8 @@ class Prompt {
         if (this.canAutoplay() && this.autoplayEnabled) {
             this.startAutoplay();
         }
+
+        this.emitState();
     }
 
     canAutoplay() {
@@ -68,6 +70,19 @@ class Prompt {
         }
 
         this.chatModel = model.toLowerCase();
+        this.emitState();
+    }
+
+    emitState() {
+        if (!this.playground) {
+            return;
+        }
+
+        this.playground.dispatchEvent(new CustomEvent('prompt:model-change', {
+            detail: {
+                model: this.chatModel
+            }
+        }));
     }
 
     stopAutoplay() {
@@ -113,6 +128,7 @@ class Prompt {
 
         this.isVariantRunning = true;
         this.chatModel = variant.model;
+        this.emitState();
         this.preparePromptWindow();
         this.promptWindow.replaceChildren();
         this.clearInputSurface();

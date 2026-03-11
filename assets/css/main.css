@@ -102,6 +102,26 @@ body.mobile-nav-open {
     filter: drop-shadow(0 0 18px rgba(94, 106, 210, 0.22)) drop-shadow(0 0 44px rgba(184, 185, 247, 0.16));
 }
 
+.mobile-chat-sheet {
+    display: none;
+}
+
+.prompt-stream-shell {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    min-height: 0;
+}
+
+.prompt-composer-shell {
+    position: relative;
+    z-index: 20;
+}
+
+.mobile-chat-intro {
+    display: none;
+}
+
 .laser-reveal-zone {
     position: absolute;
     left: 50%;
@@ -1595,6 +1615,226 @@ body.mobile-nav-open {
         height: 100% !important;
         object-position: center bottom;
         transform: none;
+    }
+
+    .relative.flex.h-\[390px\].sm\:h-\[450px\].md\:h-\[650px\] {
+        height: 34rem !important;
+    }
+
+    .relative.z-10.bg-\[\#08090a\].rounded-\[20px\].sm\:rounded-xl {
+        border-radius: 22px !important;
+    }
+
+    .relative.z-10.flex-1.flex.flex-col.bg-transparent>.h-12 {
+        display: none;
+    }
+
+    #project-starter-playground {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.85rem 0.85rem 0.95rem;
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0)),
+            rgba(8, 9, 10, 0.96);
+    }
+
+    #project-starter-playground>.absolute.pointer-events-none {
+        display: none;
+    }
+
+    .mobile-chat-sheet {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        padding: 0.78rem 0.85rem;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.025);
+    }
+
+    .mobile-chat-sheet__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.7rem;
+    }
+
+    .mobile-chat-sheet__eyebrow {
+        padding-top: 0.18rem;
+        color: #6d737e;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+    }
+
+    .mobile-chat-sheet__service {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        min-width: 0;
+        padding: 0.52rem 0.72rem;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 11px;
+        background: rgba(255, 255, 255, 0.03);
+        color: #f5f6f8;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1;
+    }
+
+    .mobile-chat-sheet__service span:last-of-type {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .mobile-chat-sheet__icon,
+    .mobile-chat-sheet__chevron {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .mobile-chat-sheet__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        font-size: 0.76rem;
+    }
+
+    .mobile-chat-sheet__status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.42rem;
+        padding: 0.42rem 0.58rem;
+        border-radius: 999px;
+        border: 1px solid rgba(94, 106, 210, 0.16);
+        background: rgba(94, 106, 210, 0.08);
+        color: #c6caf9;
+        white-space: nowrap;
+    }
+
+    .mobile-chat-sheet__detail {
+        color: #7d828d;
+        text-align: right;
+    }
+
+    .prompt-stream-shell {
+        display: flex;
+        flex-direction: column;
+        min-height: 16.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.055);
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(16, 17, 19, 0.92), rgba(10, 11, 12, 0.98));
+        overflow: hidden;
+    }
+
+    .prompt-container {
+        flex: 1;
+        min-height: 0;
+        padding: 1rem 0.95rem 0.7rem !important;
+        gap: 0.8rem !important;
+    }
+
+    .prompt-initial-state {
+        width: 100%;
+        max-width: none !important;
+        margin: 0 !important;
+        padding-top: 0 !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 0.55rem !important;
+    }
+
+    .prompt-initial-title,
+    .prompt-initial-tags {
+        display: none !important;
+    }
+
+    .mobile-chat-intro {
+        display: block;
+        margin: 0;
+        max-width: 18rem;
+        color: #d7dae0;
+        font-size: 0.96rem;
+        line-height: 1.45;
+    }
+
+    .prompt-initial-typed {
+        height: auto !important;
+        justify-content: flex-start !important;
+    }
+
+    .prompt-initial-typed p {
+        min-height: 1.5rem !important;
+        margin: 0;
+        text-align: left;
+        color: #7c828d !important;
+        font-size: 0.82rem !important;
+        line-height: 1.45 !important;
+    }
+
+    .chat-line {
+        margin-bottom: 0 !important;
+    }
+
+    .chat-user-bubble,
+    .chat-team-bubble {
+        max-width: 92%;
+        padding: 0.88rem 1rem;
+        border-radius: 16px;
+        font-size: 0.98rem;
+        line-height: 1.5;
+    }
+
+    .chat-user-bubble {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .chat-team-bubble {
+        background: rgba(94, 106, 210, 0.11);
+        color: #cfd2ff;
+    }
+
+    .prompt-composer-shell {
+        position: sticky;
+        bottom: 0;
+        margin-top: auto;
+        padding-top: 0.1rem;
+        background: linear-gradient(180deg, rgba(8, 9, 10, 0), rgba(8, 9, 10, 0.88) 24%, rgba(8, 9, 10, 1));
+    }
+
+    #prompt-form {
+        margin-top: 0 !important;
+        padding: 0.72rem !important;
+        border-radius: 16px !important;
+        gap: 0.7rem !important;
+        background: rgba(14, 15, 17, 0.96) !important;
+        border-color: rgba(255, 255, 255, 0.06) !important;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+    }
+
+    #prompt-form .dropdown {
+        display: none;
+    }
+
+    #prompt-form input[name="prompt"] {
+        order: 0 !important;
+        width: 100% !important;
+        min-height: 2.85rem;
+        padding: 0 !important;
+        font-size: 0.95rem !important;
+    }
+
+    #prompt-form button[type="submit"] {
+        width: 100%;
+        justify-content: center;
+        min-height: 2.85rem;
+        padding: 0.8rem 1rem !important;
+        border-radius: 12px;
+        font-size: 0.92rem;
     }
 }
 
