@@ -14,6 +14,153 @@ document.addEventListener('DOMContentLoaded', () => {
         'internal business tool': 'solar:shield-check-linear'
     };
 
+    const initSecurityRadar = () => {
+        const host = document.querySelector('[data-security-radar]');
+        if (!host) {
+            return;
+        }
+
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        if (!context) {
+            return;
+        }
+
+        const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+        const mouse = { x: 0.5, y: 0.5 };
+        const targetMouse = { x: 0.5, y: 0.5 };
+        let frameId = 0;
+        let width = 0;
+        let height = 0;
+        let deviceScale = 1;
+
+        canvas.setAttribute('aria-hidden', 'true');
+        host.appendChild(canvas);
+
+        const resize = () => {
+            width = Math.max(host.clientWidth, 1);
+            height = Math.max(host.clientHeight, 1);
+            deviceScale = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(width * deviceScale);
+            canvas.height = Math.round(height * deviceScale);
+            context.setTransform(deviceScale, 0, 0, deviceScale, 0, 0);
+        };
+
+        const drawRadar = (time) => {
+            context.clearRect(0, 0, width, height);
+
+            const radius = Math.min(width, height) * 0.36;
+            const centerX = width * (prefersReducedMotion ? 0.74 : 0.72) + (mouse.x - 0.5) * 16;
+            const centerY = height * 0.42 + (mouse.y - 0.5) * 16;
+            const ringCount = 10;
+            const spokeCount = 10;
+            const sweepAngle = prefersReducedMotion ? Math.PI * 1.55 : time * 0.001;
+
+            const background = context.createRadialGradient(centerX, centerY, radius * 0.08, centerX, centerY, radius * 1.35);
+            background.addColorStop(0, 'rgba(149, 160, 183, 0.1)');
+            background.addColorStop(0.55, 'rgba(59, 64, 73, 0.08)');
+            background.addColorStop(1, 'rgba(8, 9, 10, 0)');
+            context.fillStyle = background;
+            context.beginPath();
+            context.arc(centerX, centerY, radius * 1.35, 0, Math.PI * 2);
+            context.fill();
+
+            context.strokeStyle = 'rgba(131, 138, 151, 0.22)';
+            context.lineWidth = 1;
+            for (let ringIndex = 1; ringIndex <= ringCount; ringIndex += 1) {
+                const ringRadius = (radius / ringCount) * ringIndex;
+                context.beginPath();
+                context.arc(centerX, centerY, ringRadius, 0, Math.PI * 2);
+                context.stroke();
+            }
+
+            for (let spokeIndex = 0; spokeIndex < spokeCount; spokeIndex += 1) {
+                const angle = (Math.PI * 2 * spokeIndex) / spokeCount;
+                context.strokeStyle = 'rgba(113, 121, 134, 0.16)';
+                context.beginPath();
+                context.moveTo(centerX, centerY);
+                context.lineTo(centerX + Math.cos(angle) * radius, centerY + Math.sin(angle) * radius);
+                context.stroke();
+            }
+
+            const sweepGradient = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+            sweepGradient.addColorStop(0, 'rgba(201, 211, 229, 0.22)');
+            sweepGradient.addColorStop(0.68, 'rgba(122, 131, 147, 0.09)');
+            sweepGradient.addColorStop(1, 'rgba(8, 9, 10, 0)');
+            context.fillStyle = sweepGradient;
+            context.beginPath();
+            context.moveTo(centerX, centerY);
+            context.arc(centerX, centerY, radius, sweepAngle - 0.22, sweepAngle + 0.22);
+            context.closePath();
+            context.fill();
+
+            context.strokeStyle = 'rgba(214, 223, 238, 0.8)';
+            context.lineWidth = 1.5;
+            context.beginPath();
+            context.moveTo(centerX, centerY);
+            context.lineTo(centerX + Math.cos(sweepAngle) * radius, centerY + Math.sin(sweepAngle) * radius);
+            context.stroke();
+
+            const pulseRadius = radius * 0.58;
+            const pulseX = centerX + Math.cos(sweepAngle * 1.2) * pulseRadius;
+            const pulseY = centerY + Math.sin(sweepAngle * 1.2) * pulseRadius;
+            const pulse = context.createRadialGradient(pulseX, pulseY, 0, pulseX, pulseY, radius * 0.12);
+            pulse.addColorStop(0, 'rgba(245, 247, 250, 0.95)');
+            pulse.addColorStop(0.35, 'rgba(179, 188, 206, 0.7)');
+            pulse.addColorStop(1, 'rgba(179, 188, 206, 0)');
+            context.fillStyle = pulse;
+            context.beginPath();
+            context.arc(pulseX, pulseY, radius * 0.12, 0, Math.PI * 2);
+            context.fill();
+
+            const markerAngles = [0.42, 1.08, 1.74];
+            markerAngles.forEach((marker, index) => {
+                const markerRadius = radius * (0.32 + index * 0.18);
+                const markerX = centerX + Math.cos(marker * Math.PI) * markerRadius;
+                const markerY = centerY + Math.sin(marker * Math.PI) * markerRadius;
+                context.fillStyle = 'rgba(197, 205, 218, 0.6)';
+                context.beginPath();
+                context.arc(markerX, markerY, 2.5, 0, Math.PI * 2);
+                context.fill();
+            });
+        };
+
+        const animate = (time) => {
+            if (!prefersReducedMotion) {
+                mouse.x += (targetMouse.x - mouse.x) * 0.05;
+                mouse.y += (targetMouse.y - mouse.y) * 0.05;
+            }
+
+            drawRadar(time);
+
+            if (!prefersReducedMotion) {
+                frameId = window.requestAnimationFrame(animate);
+            }
+        };
+
+        const handlePointerMove = (event) => {
+            const rect = host.getBoundingClientRect();
+            targetMouse.x = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+            targetMouse.y = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+        };
+
+        const handlePointerLeave = () => {
+            targetMouse.x = 0.5;
+            targetMouse.y = 0.5;
+        };
+
+        resize();
+        if (prefersReducedMotion) {
+            drawRadar(0);
+        } else {
+            host.addEventListener('pointermove', handlePointerMove);
+            host.addEventListener('pointerleave', handlePointerLeave);
+            frameId = window.requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+    };
+
     const initMobileNav = () => {
         const toggle = document.getElementById('mobile-nav-toggle');
         const panel = document.getElementById('mobile-nav-panel');
@@ -137,6 +284,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof initLaserFlowBridge === 'function') {
         initLaserFlowBridge();
     }
+
+    initSecurityRadar();
 
     const typedTarget = document.getElementById('prompts-sample');
     if (typedTarget) {
