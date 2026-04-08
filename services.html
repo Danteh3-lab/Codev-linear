@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Codev services for websites, web apps, mobile apps, and internal business tools with senior engineering, clear scope, and hands-on delivery support.">
+    <title>Codev Services | Website, app, and internal tool delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css?v=20260408services1">
+</head>
+
+<body id="top" class="services-page text-zinc-400 antialiased selection:bg-[#5E6AD2] selection:text-white">
+    <nav class="fixed top-0 w-full z-50 border-b border-white/[0.08] bg-[#08090a]/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+            <div class="flex items-center gap-4 md:gap-8 min-w-0">
+                <a href="index.html#top"
+                    class="text-white font-medium text-base sm:text-lg tracking-tighter flex items-center gap-2 md:gap-2.5 min-w-0">
+                    <img src="assets/logo/logo.png" alt="Codev Logo" width="40" height="40"
+                        class="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 object-contain brightness-0 invert opacity-90 shrink-0">
+                    Codev
+                </a>
+                <div class="hidden md:flex items-center gap-6 text-sm font-normal">
+                    <a href="services.html" aria-current="page" class="hover:text-white transition-colors duration-200">Services</a>
+                    <a href="index.html#method" class="hover:text-white transition-colors duration-200">Process</a>
+                    <a href="index.html#customers" class="hover:text-white transition-colors duration-200">Clients</a>
+                    <a href="index.html#results" class="hover:text-white transition-colors duration-200">Results</a>
+                    <a href="index.html#project-intake" class="hover:text-white transition-colors duration-200">Start</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-4 text-xs font-medium">
+                <a href="index.html#method" class="hidden sm:block hover:text-white transition-colors">See our process.</a>
+                <a href="index.html#project-intake"
+                    class="bg-white/10 hover:bg-white/15 text-white px-3 sm:px-3.5 py-1.5 rounded-full border border-white/10 transition-all duration-200 shadow-[0_0_10px_rgba(255,255,255,0.05)] whitespace-nowrap">
+                    Start your project.
+                </a>
+                <button id="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav-panel"
+                    class="md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white transition-colors hover:bg-white/[0.08]">
+                    <span class="sr-only">Open navigation</span>
+                    <span class="mobile-nav-toggle-lines" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-nav-backdrop" class="mobile-nav-backdrop md:hidden" hidden></div>
+    <div id="mobile-nav-panel" class="mobile-nav-panel md:hidden" hidden>
+        <div class="mobile-nav-sheet">
+            <a href="services.html" data-mobile-nav-link aria-current="page" class="mobile-nav-link">Services</a>
+            <a href="index.html#method" data-mobile-nav-link class="mobile-nav-link">Process</a>
+            <a href="index.html#customers" data-mobile-nav-link class="mobile-nav-link">Clients</a>
+            <a href="index.html#results" data-mobile-nav-link class="mobile-nav-link">Results</a>
+            <a href="index.html#project-intake" data-mobile-nav-link class="mobile-nav-link">Start</a>
+            <a href="index.html#method" data-mobile-nav-link class="mobile-nav-link mobile-nav-link--secondary">See our process.</a>
+        </div>
+    </div>
+
+    <main>
+        <section class="services-hero">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
+                <div class="services-hero-grid">
+                    <div>
+                        <p class="services-eyebrow mb-5">Codev Services</p>
+                        <h1 class="services-display">The first release should solve the real job.</h1>
+                        <p class="services-hero-lede mt-6">
+                            We scope websites, products, mobile experiences, and internal tools around what needs to
+                            work first, then build with senior engineering and a clear path to launch.
+                        </p>
+                        <div class="services-hero-actions">
+                            <a href="index.html#project-intake"
+                                class="inline-flex h-11 items-center justify-center rounded-full bg-[#EBEBED] px-6 text-sm font-medium text-black shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                                Start your project
+                            </a>
+                            <a href="index.html#method"
+                                class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-medium text-white">
+                                See the process
+                                <iconify-icon icon="solar:arrow-right-linear" width="14" aria-hidden="true"></iconify-icon>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="services-rail" aria-label="Primary services">
+                        <div class="services-rail-item">
+                            <span class="services-rail-index">01</span>
+                            <a href="#website-build">Website Build</a>
+                            <span class="services-rail-type">Launch</span>
+                        </div>
+                        <div class="services-rail-item">
+                            <span class="services-rail-index">02</span>
+                            <a href="#web-app">Web App</a>
+                            <span class="services-rail-type">MVP</span>
+                        </div>
+                        <div class="services-rail-item">
+                            <span class="services-rail-index">03</span>
+                            <a href="#mobile-app">Mobile App</a>
+                            <span class="services-rail-type">Field</span>
+                        </div>
+                        <div class="services-rail-item">
+                            <span class="services-rail-index">04</span>
+                            <a href="#internal-business-tool">Internal Business Tool</a>
+                            <span class="services-rail-type">Ops</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="website-build" class="services-offer">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 services-offer-grid">
+                <div class="services-offer-copy">
+                    <p class="services-label mb-4">Website Build</p>
+                    <h2>Launch a site that feels credible from day one.</h2>
+                    <p class="mt-5">
+                        For teams that need a sharp public presence, clear messaging, and a contact flow that does not
+                        lose momentum.
+                    </p>
+                    <ul class="services-offer-points">
+                        <li>Discovery &amp; page planning</li>
+                        <li>Copy structure &amp; conversion-focused layout</li>
+                        <li>Responsive front-end build</li>
+                        <li>CMS or handoff-friendly editing setup</li>
+                    </ul>
+                    <dl class="services-note-grid">
+                        <div>
+                            <dt>Best for</dt>
+                            <dd>Businesses replacing an outdated site or launching a new offer.</dd>
+                        </div>
+                        <div>
+                            <dt>Delivery</dt>
+                            <dd>Typically scoped as a focused launch with room for follow-on improvements.</dd>
+                        </div>
+                    </dl>
+                    <a href="index.html#project-intake" class="services-inline-cta">
+                        Start your project
+                        <iconify-icon icon="solar:arrow-right-linear" width="14" aria-hidden="true"></iconify-icon>
+                    </a>
+                </div>
+                <div class="services-offer-stage">
+                    <span class="services-stage-glow" aria-hidden="true"></span>
+                    <p class="services-stage-label">Discovery to launch</p>
+                    <div class="services-stage-stack">
+                        <div class="services-stage-row"><span>Positioning and page hierarchy</span><span>Week 01</span></div>
+                        <div class="services-stage-row"><span>Lead path and copy flow</span><span>Week 02</span></div>
+                        <div class="services-stage-row"><span>Responsive build and QA</span><span>Week 03</span></div>
+                        <div class="services-stage-row"><span>Launch readiness and handoff</span><span>Week 04</span></div>
+                    </div>
+                    <p class="services-stage-footer">
+                        The goal is a public-facing site that reads clearly, looks trustworthy, and keeps the contact
+                        path obvious from the first screen to handoff.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="web-app" class="services-offer">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 services-offer-grid">
+                <div class="services-offer-copy">
+                    <p class="services-label mb-4">Web App</p>
+                    <h2>Ship the working product before the roadmap gets bloated.</h2>
+                    <p class="mt-5">
+                        For founder-led products and client platforms that need a usable MVP, clear priorities, and
+                        production-ready foundations.
+                    </p>
+                    <ul class="services-offer-points">
+                        <li>Workflow mapping &amp; feature prioritization</li>
+                        <li>App UI and front-end architecture</li>
+                        <li>Backend integration and core data flows</li>
+                        <li>Release planning for v1 and next-step iterations</li>
+                    </ul>
+                    <dl class="services-note-grid">
+                        <div>
+                            <dt>Best for</dt>
+                            <dd>Teams building a customer-facing product, portal, or internal-client workflow.</dd>
+                        </div>
+                        <div>
+                            <dt>Delivery</dt>
+                            <dd>Delivered in phases so the first release solves a real job fast.</dd>
+                        </div>
+                    </dl>
+                    <a href="index.html#project-intake" class="services-inline-cta">
+                        Start your project
+                        <iconify-icon icon="solar:arrow-right-linear" width="14" aria-hidden="true"></iconify-icon>
+                    </a>
+                </div>
+                <div class="services-offer-stage">
+                    <span class="services-stage-glow" aria-hidden="true"></span>
+                    <p class="services-stage-label">Focused MVP scope</p>
+                    <div class="services-stage-stack">
+                        <div class="services-stage-row"><span>Working surface and core roles</span><span>Priority</span></div>
+                        <div class="services-stage-row"><span>Core data flow and permissions</span><span>Foundation</span></div>
+                        <div class="services-stage-row"><span>First release around daily use</span><span>Release</span></div>
+                        <div class="services-stage-row"><span>Next-step backlog after launch</span><span>Phase 02</span></div>
+                    </div>
+                    <p class="services-stage-footer">
+                        Release one should already do real work. Nice-to-have branches stay out until the main workflow
+                        is stable and shipped.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="mobile-app" class="services-offer">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 services-offer-grid">
+                <div class="services-offer-copy">
+                    <p class="services-label mb-4">Mobile App</p>
+                    <h2>Turn the core experience into something people can use anywhere.</h2>
+                    <p class="mt-5">
+                        For teams that need mobile access without rebuilding everything around novelty features.
+                    </p>
+                    <ul class="services-offer-points">
+                        <li>Mobile use-case definition</li>
+                        <li>Core screen and navigation planning</li>
+                        <li>API-connected app build</li>
+                        <li>Launch support for early releases</li>
+                    </ul>
+                    <dl class="services-note-grid">
+                        <div>
+                            <dt>Best for</dt>
+                            <dd>Businesses extending an existing service or product to customers in the field.</dd>
+                        </div>
+                        <div>
+                            <dt>Delivery</dt>
+                            <dd>Planned around the smallest mobile feature set that creates real user value.</dd>
+                        </div>
+                    </dl>
+                    <a href="index.html#project-intake" class="services-inline-cta">
+                        Start your project
+                        <iconify-icon icon="solar:arrow-right-linear" width="14" aria-hidden="true"></iconify-icon>
+                    </a>
+                </div>
+                <div class="services-offer-stage">
+                    <span class="services-stage-glow" aria-hidden="true"></span>
+                    <p class="services-stage-label">Mobile release path</p>
+                    <div class="services-stage-stack">
+                        <div class="services-stage-row"><span>Field use cases and offline assumptions</span><span>Context</span></div>
+                        <div class="services-stage-row"><span>Core screens and navigation map</span><span>UI</span></div>
+                        <div class="services-stage-row"><span>Connected data and account flows</span><span>API</span></div>
+                        <div class="services-stage-row"><span>Early release support and fixes</span><span>Launch</span></div>
+                    </div>
+                    <p class="services-stage-footer">
+                        Mobile should narrow to the moments that matter most, then ship with the smallest screen set
+                        that already feels useful in the real environment.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="internal-business-tool" class="services-offer">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 services-offer-grid">
+                <div class="services-offer-copy">
+                    <p class="services-label mb-4">Internal Business Tool</p>
+                    <h2>Replace repetitive admin work with a tool built around your team.</h2>
+                    <p class="mt-5">
+                        For operations-heavy teams where spreadsheets, copying, and workarounds are slowing down the
+                        day-to-day.
+                    </p>
+                    <ul class="services-offer-points">
+                        <li>Workflow audit and bottleneck mapping</li>
+                        <li>Role-aware internal UI</li>
+                        <li>Data capture, status tracking, and automations</li>
+                        <li>Rollout planning for team adoption</li>
+                    </ul>
+                    <dl class="services-note-grid">
+                        <div>
+                            <dt>Best for</dt>
+                            <dd>Teams with manual operational work that needs consistency and visibility.</dd>
+                        </div>
+                        <div>
+                            <dt>Delivery</dt>
+                            <dd>Usually shipped around the most painful workflow first, then expanded in steps.</dd>
+                        </div>
+                    </dl>
+                    <a href="index.html#project-intake" class="services-inline-cta">
+                        Start your project
+                        <iconify-icon icon="solar:arrow-right-linear" width="14" aria-hidden="true"></iconify-icon>
+                    </a>
+                </div>
+                <div class="services-offer-stage">
+                    <span class="services-stage-glow" aria-hidden="true"></span>
+                    <p class="services-stage-label">Ops workflow first</p>
+                    <div class="services-stage-stack">
+                        <div class="services-stage-row"><span>Bottleneck mapping and handoff review</span><span>Audit</span></div>
+                        <div class="services-stage-row"><span>Status views and role-aware actions</span><span>Flow</span></div>
+                        <div class="services-stage-row"><span>Tracking, alerts, and clean ownership</span><span>Visibility</span></div>
+                        <div class="services-stage-row"><span>Team rollout in controlled steps</span><span>Adoption</span></div>
+                    </div>
+                    <p class="services-stage-footer">
+                        The first version targets the operational drag that people already feel every day, so adoption
+                        starts with relief instead of training overhead.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-process">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 services-process-grid">
+                <div class="services-process-copy">
+                    <p class="services-label mb-4">How Codev Works</p>
+                    <h2>A clear plan before the build starts.</h2>
+                    <p class="mt-5">
+                        Every engagement begins with scope, tradeoffs, and milestones that make the build legible before
+                        time gets spent.
+                    </p>
+                    <div class="services-process-points">
+                        <div class="services-process-point">
+                            <span class="services-process-index">01</span>
+                            <p>Senior engineering from the first conversation.</p>
+                        </div>
+                        <div class="services-process-point">
+                            <span class="services-process-index">02</span>
+                            <p>Honest tradeoffs while work is still cheap to change.</p>
+                        </div>
+                        <div class="services-process-point">
+                            <span class="services-process-index">03</span>
+                            <p>Visible progress and clear ownership through launch.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-process-stage">
+                    <p class="services-stage-label">Engagement rhythm</p>
+                    <div class="services-stage-stack">
+                        <div class="services-stage-row"><span>Scope the first release before building starts</span><span>Plan</span></div>
+                        <div class="services-stage-row"><span>Keep tradeoffs visible as work moves</span><span>Review</span></div>
+                        <div class="services-stage-row"><span>Ship with a clear owner and follow-through</span><span>Launch</span></div>
+                    </div>
+                    <p class="services-stage-footer">
+                        The process is designed to keep decisions legible. You should know what is being built, why it
+                        is in scope, and what comes next before each release moves.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-final">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="services-final-cta">
+                    <p class="services-label mb-4">Start the right scope</p>
+                    <h2>Start with the version that solves the real problem first.</h2>
+                    <p class="mt-5 max-w-2xl">
+                        Tell us what needs to work, what is getting in the way, and where the first release needs to
+                        land.
+                    </p>
+                    <div class="services-final-cta-actions">
+                        <a href="index.html#project-intake"
+                            class="inline-flex h-11 items-center justify-center rounded-full bg-[#EBEBED] px-6 text-sm font-medium text-black shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+                            Start your project
+                        </a>
+                        <a href="index.html#results"
+                            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-medium text-white">
+                            See shipped outcomes
+                            <iconify-icon icon="solar:arrow-right-linear" width="14" aria-hidden="true"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/[0.08] bg-[#08090a] pt-14 md:pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-8 mb-14 md:mb-16">
+                <div class="col-span-2">
+                    <a href="index.html#top"
+                        class="text-white font-medium text-base sm:text-lg tracking-tighter flex items-center gap-2.5 mb-4">
+                        <img src="assets/logo/logo.png" alt="Codev Logo" width="36" height="36"
+                            class="h-7 w-7 sm:h-9 sm:w-9 object-contain brightness-0 invert opacity-90">
+                        Codev
+                    </a>
+                </div>
+                <div>
+                    <h4 class="text-white text-xs font-medium mb-4">Services</h4>
+                    <ul class="space-y-3 text-xs text-zinc-500">
+                        <li><a href="#website-build" class="hover:text-zinc-300 transition-colors">Website Development</a></li>
+                        <li><a href="#web-app" class="hover:text-zinc-300 transition-colors">Web Platforms</a></li>
+                        <li><a href="#mobile-app" class="hover:text-zinc-300 transition-colors">Mobile Apps</a></li>
+                        <li><a href="#internal-business-tool" class="hover:text-zinc-300 transition-colors">Internal Tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-xs font-medium mb-4">Studio</h4>
+                    <ul class="space-y-3 text-xs text-zinc-500">
+                        <li><a href="index.html#method" class="hover:text-zinc-300 transition-colors">Process</a></li>
+                        <li><a href="index.html#customers" class="hover:text-zinc-300 transition-colors">Clients</a></li>
+                        <li><a href="index.html#results" class="hover:text-zinc-300 transition-colors">Results</a></li>
+                        <li><a href="index.html#project-intake" class="hover:text-zinc-300 transition-colors">Start</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-xs font-medium mb-4">Resources</h4>
+                    <ul class="space-y-3 text-xs text-zinc-500">
+                        <li><a href="index.html#project-intake" class="hover:text-zinc-300 transition-colors">Start your project.</a></li>
+                        <li><a href="index.html#results" class="hover:text-zinc-300 transition-colors">Case Notes</a></li>
+                        <li><a href="index.html#customers" class="hover:text-zinc-300 transition-colors">Client highlights</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white text-xs font-medium mb-4">Delivery</h4>
+                    <ul class="space-y-3 text-xs text-zinc-500">
+                        <li><a href="index.html#method" class="hover:text-zinc-300 transition-colors">Planning</a></li>
+                        <li><a href="index.html#results" class="hover:text-zinc-300 transition-colors">Launch support</a></li>
+                        <li><a href="index.html#project-intake" class="hover:text-zinc-300 transition-colors">Project intake</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/[0.04]">
+                <div class="text-xs text-zinc-600">
+                    &copy; 2026 Codev Inc. All rights reserved.
+                </div>
+                <div class="flex items-center gap-6 mt-4 md:mt-0">
+                    <a href="#" data-coming-soon="true" aria-disabled="true" title="Coming soon" aria-label="Instagram coming soon"
+                        class="text-zinc-500 hover:text-white transition-colors"><iconify-icon
+                            icon="solar:camera-linear" width="16" aria-hidden="true"></iconify-icon></a>
+                    <a href="#" data-coming-soon="true" aria-disabled="true" title="Coming soon" aria-label="Updates coming soon"
+                        class="text-zinc-500 hover:text-white transition-colors"><iconify-icon icon="solar:bell-linear"
+                            width="16" aria-hidden="true"></iconify-icon></a>
+                    <a href="#" data-coming-soon="true" aria-disabled="true" title="Coming soon" aria-label="Global site coming soon"
+                        class="text-zinc-500 hover:text-white transition-colors"><iconify-icon
+                            icon="solar:global-linear" width="16" aria-hidden="true"></iconify-icon></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js?v=20260408services1" defer></script>
+</body>
+
+</html>

@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const DropdownCtor = window.Dropdown;
     const initLaserFlowBridge = window.initLaserFlowBridge;
     const PromptCtor = window.Prompt;
+    const TypedCtor = window.Typed;
     const body = document.body;
     const serviceLabel = document.getElementById('mobile-service-label');
     const phaseLabel = document.getElementById('mobile-phase-label');
+    const prefersReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const prefersReducedMotion = prefersReducedMotionQuery.matches;
     const serviceIcons = {
         'website build': 'solar:laptop-minimalistic-linear',
         'web app': 'solar:smartphone-linear',
@@ -104,43 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    initMobileNav();
-
-    if (typeof initLaserFlowBridge === 'function') {
-        initLaserFlowBridge();
-    }
-
-    if (typeof DropdownCtor !== 'function' || typeof PromptCtor !== 'function') {
-        return;
-    }
-
-    document.querySelectorAll('a[data-coming-soon="true"]').forEach((link) => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-        });
-    });
-
-    const typedTarget = document.getElementById('prompts-sample');
-    const TypedCtor = window.Typed;
-
-    if (typedTarget && typeof TypedCtor === 'function') {
-        new TypedCtor('#prompts-sample', {
-            strings: [
-                'Need a business website that feels solid?',
-                'Need a web app built around how your users actually work?',
-                'Thinking about a mobile app for your customers?',
-                'Need an internal tool that saves your team time?'
-            ],
-            typeSpeed: 40,
-            backSpeed: 20,
-            backDelay: 2000,
-            loop: true,
-            showCursor: true,
-            cursorChar: '|'
-        });
-    }
-
-    const promptSystem = new PromptCtor('#project-starter-playground', { autoplay: true });
     const syncMobileSheet = (value) => {
         if (!value) {
             return;
@@ -161,9 +126,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    syncMobileSheet('Website Build');
+    initMobileNav();
+
+    document.querySelectorAll('a[data-coming-soon="true"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+        });
+    });
+
+    if (typeof initLaserFlowBridge === 'function') {
+        initLaserFlowBridge();
+    }
+
+    const typedTarget = document.getElementById('prompts-sample');
+    if (typedTarget) {
+        if (prefersReducedMotion) {
+            typedTarget.textContent = 'Need a business website that feels solid?';
+        } else if (typeof TypedCtor === 'function') {
+            new TypedCtor('#prompts-sample', {
+                strings: [
+                    'Need a business website that feels solid?',
+                    'Need a web app built around how your users actually work?',
+                    'Thinking about a mobile app for your customers?',
+                    'Need an internal tool that saves your team time?'
+                ],
+                typeSpeed: 40,
+                backSpeed: 20,
+                backDelay: 2000,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|'
+            });
+        }
+    }
 
     const playground = document.getElementById('project-starter-playground');
+    const form = document.getElementById('prompt-form');
+    const input = form ? form.querySelector('input[name="prompt"]') : null;
+    const serviceSelect = document.getElementById('service-select');
+    const promptSystem = (playground && typeof PromptCtor === 'function')
+        ? new PromptCtor('#project-starter-playground', { autoplay: !prefersReducedMotion })
+        : null;
+
     if (playground) {
         playground.addEventListener('prompt:model-change', (event) => {
             const model = event.detail && event.detail.model ? event.detail.model : '';
@@ -175,26 +179,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    new DropdownCtor('#service-dropdown', (value) => {
-        promptSystem.stopAutoplay();
-        promptSystem.setAIModel(value);
-        syncMobileSheet(value);
-    });
+    if (serviceSelect) {
+        syncMobileSheet(serviceSelect.value);
 
-    const form = document.getElementById('prompt-form');
-    if (!form) {
+        serviceSelect.addEventListener('change', (event) => {
+            const value = event.target.value;
+
+            if (promptSystem) {
+                promptSystem.stopAutoplay();
+                promptSystem.setAIModel(value);
+            }
+
+            syncMobileSheet(value);
+        });
+    }
+
+    if (!form || !input || !promptSystem) {
         return;
     }
 
-    const input = form.querySelector('input[name="prompt"]');
-
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-
-        if (!input) {
-            return;
-        }
-
         promptSystem.addPrompt(input.value);
         input.value = '';
     });

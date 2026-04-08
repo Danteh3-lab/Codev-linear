@@ -301,7 +301,7 @@ void main(){
                 return;
             }
 
-            if (this.isMobile()) {
+            if (this.isMobile() || this.reduceMotionQuery.matches) {
                 this.video.pause();
                 return;
             }
